@@ -1,4 +1,4 @@
-Em đã xem lại và liệt kê những yêu cầu của app thế này được không ạ:
+Blog Project
 Web app bao gồm:
 - Trang chủ list các bài blog
 - Chọn vào bài blog sẽ đến trang riêng của nó
