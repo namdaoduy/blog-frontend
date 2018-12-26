@@ -18,7 +18,7 @@ code {
 }
 
 :root {
-  --background-color: #fffef8;
+  --background-color: #f1f0ea;
   --paper-color: #f3ecda;
   --primary-color: #5587bb;
 }
@@ -27,10 +27,24 @@ code {
   font-family: 'Rozha One', serif;
 }
 
+.serif-2 {
+  font-family: 'Noto Serif', serif;
+}
+
 .semi-bold {
   font-weight: 900;
 }
 
 .bold {
   font-weight: bold;
+}
+
+.dot-divider {
+  padding-right: .3em;
+  padding-left: .3em;
+  font-size: 1em;
+}
+
+.dot-divider:after {
+  content: '\00B7';
 }
