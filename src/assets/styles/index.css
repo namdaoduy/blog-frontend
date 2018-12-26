@@ -16,3 +16,21 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
+
+:root {
+  --background-color: #fffef8;
+  --paper-color: #f3ecda;
+  --primary-color: #5587bb;
+}
+
+.serif {
+  font-family: 'Rozha One', serif;
+}
+
+.semi-bold {
+  font-weight: 900;
+}
+
+.bold {
+  font-weight: bold;
+}

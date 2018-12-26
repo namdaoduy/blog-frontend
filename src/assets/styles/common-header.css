@@ -1,3 +1,7 @@
+.header {
+  background-color: var(--paper-color)
+}
+
 .header-menu-btn {
   margin-left: -12px;
   margin-right: 20px;
@@ -7,7 +11,7 @@
   flex: 1;
 }
 
-.header-center h5 {
+.header-center h4 {
   width: fit-content;
   margin: auto;
 }

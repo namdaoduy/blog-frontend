@@ -1,3 +1,66 @@
 .home-container {
-  
+  min-height: 100vh;
+  background-color: var(--background-color);
+}
+
+.home-inner {
+  width: 100%;
+  margin: 20px auto;
+}
+
+@media (min-width: 768px) {
+  .home-inner {
+    width: 768px;
+  }
+}
+
+@media (min-width: 960px) {
+  .home-inner {
+    width: 960px;
+  }
+}
+
+.home-inner hr {
+  margin: 20px 10px;
+}
+
+.home-welcome {
+  width: 100%;
+  padding: 30px;
+  background-color: var(--paper-color)
+}
+
+.home-welcome h1 {
+  font-size: 3em;
+  line-height: 1em;
+}
+
+.home-welcome h6 {
+  width: 100%;
+  max-width: 450px;
+}
+
+.home-welcome button {
+  margin: 10px 10px 0 0;
+  padding: 8px 16px;
+}
+
+.home-welcome .btn-1 {
+  color: white;
+  background-color: var(--primary-color);
+}
+
+.home-new-blog {
+  padding: 15px;
+  margin-bottom: 20px;
+  background-color: var(--paper-color)
+}
+
+.home-new-blog h2 {
+  font-family: 'Noto Serif', serif;
+  padding: 5px 0;
+}
+
+.home-new-blog p {
+  color: gray;
 }
