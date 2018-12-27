@@ -11,7 +11,7 @@ export default class NewBlog extends Component {
       <Grid item xs={12}>
         <ButtonBase className="btn-base">
           <Paper className="home-new-blog">
-            <Typography variant="h6" className="serif-2">
+            <Typography variant="h5" className="serif-2">
               {"How to Eat the Best Fruit (and Not the Bad Fruit)"}
             </Typography>
             <Typography variant="body1">
