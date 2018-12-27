@@ -54,14 +54,34 @@ export default class App extends Component {
       <Redirect to="/" key="redirect"/>
     ]
 
+    const routesUser = [
+      <Route path="/login" component={Login} key="login"/>,
+      <Route path="/blog/:blog_id" component={Blog} key="blog"/>,
+      <Route path="/user/blogs" component={Home} key="blogs"/>,
+      <Route path="/" component={Home} key="home"/>,
+      <Redirect to="/" key="redirect"/>
+    ]
+
     if (!this.state.isLogin) {
       return routes;
     }
     else {
-      return [...routes,
-        <Route path="/user/blogs" component={Home} key="blogs"/>
-      ]
+      return routesUser;
     }
+  }
+
+  preloadChunks() {
+    setTimeout(() => {
+      Loadable.preloadAll()
+      .then(() => {
+        console.log('preload all chunks completed');
+      })
+      .catch(console.error);
+    }, 3000);
+  }
+
+  componentDidMount() {
+    this.preloadChunks();
   }
 
   render() {

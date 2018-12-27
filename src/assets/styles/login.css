@@ -1,0 +1,36 @@
+.login-container {
+  min-height: 100vh;
+  background-color: var(--background-color);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.login-paper {
+  background-color: var(--paper-color);
+  width: 80%;
+  padding: 40px 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+@media (min-width: 768px) {
+  .login-paper {
+    width: 600px;
+  }
+}
+
+.login-paper > h6 {
+  width: 80%;
+  max-width: 400px;
+  text-align: center;
+}
+
+.login-paper > button {
+  margin-top: 30px;
+}
+
+

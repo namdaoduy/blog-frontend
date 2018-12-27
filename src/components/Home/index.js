@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
 import './../../assets/styles/home.css'
-import { Typography, Button, Grid, Divider } from '@material-ui/core';
-import { MuiThemeProvider } from '@material-ui/core/styles';
+import { Typography, Button, Grid, Divider } from '@material-ui/core'
+import { MuiThemeProvider } from '@material-ui/core/styles'
 import Header from './../Common/Header'
-import Paper from '@material-ui/core/Paper';
+import Paper from '@material-ui/core/Paper'
 import theme from './../../configs/theme'
 import NewBlog from './NewBlog'
 import TrendingBlog from './TrendingBlog'
