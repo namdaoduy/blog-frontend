@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
 import ReactMde from "react-mde";
 import * as Showdown from 'showdown';
-import { Typography, Button, Grid, Divider, Avatar } from '@material-ui/core'
+import { Typography, Button, Grid, Divider, Avatar, TextField } from '@material-ui/core'
+import FormControl from '@material-ui/core/FormControl';
 import Paper from '@material-ui/core/Paper'
 import DeleteForever from '@material-ui/icons/DeleteForever'
 import BorderColor from '@material-ui/icons/BorderColor'
@@ -14,9 +15,9 @@ export default class BlogEditor extends Component {
     super(props);
     this.state = {
       id: this.props.blogId || null,
-      title: "",
+      title: "Your title here",
       author: "",
-      body: "",
+      body: "Your body here",
       createdAt: null,
       updatedAt: null
     }
@@ -30,17 +31,37 @@ export default class BlogEditor extends Component {
   handleBodyChange = (body) => {
     this.setState({ body });
   };
+
+  handleTitleChange = (e) => {
+    this.setState({ title: e.target.value });
+  };
   
   render() {
     return(
-      <ReactMde
-        className="md-editor"
-        onChange={this.handleBodyChange}
-        value={this.state.body}
-        generateMarkdownPreview={markdown =>
-          Promise.resolve(this.converter.makeHtml(markdown))
-        }
-      />
+      <div className="editor-container">
+        <TextField
+          onChange={this.handleTitleChange}
+          value={this.state.title}
+          required
+          id="outlined-required"
+          label="Title"
+          margin="normal"
+          variant="outlined"
+        />
+
+        <Button variant="contained" color="secondary">Submit</Button>
+
+        <ReactMde
+          className="md-editor"
+          onChange={this.handleBodyChange}
+          value={this.state.body}
+          generateMarkdownPreview={markdown =>
+            Promise.resolve(this.converter.makeHtml(markdown))
+          }
+        />
+
+      </div>
+      
     )
   }
 }

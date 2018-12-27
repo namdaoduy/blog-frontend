@@ -53,17 +53,17 @@ export default class App extends Component {
 
   renderRoutes() {
     const routes = [
+      <Route exact path="/" component={Home} key="home"/>,
       <Route path="/login" component={Login} key="login"/>,
       <Route path="/blog/:blog_id" component={Blog} key="blog"/>,
-      <Route path="/" component={Home} key="home"/>,
       <Redirect to="/" key="redirect"/>
     ]
 
     const routesUser = [
+      <Route exact path="/" component={Home} key="home"/>,
       <Route path="/login" component={Login} key="login"/>,
       <Route path="/blog/:blog_id" component={Blog} key="blog"/>,
       <Route path="/user" component={User} key="user"/>,
-      <Route path="/" component={Home} key="home"/>,
       <Redirect to="/" key="redirect"/>
     ]
 
@@ -94,7 +94,7 @@ export default class App extends Component {
       <JssProvider jss={jss} generateClassName={generateClassName}>
         <React.Fragment>
           <CssBaseline />
-          <Router>
+          <Router history={history}>
             <Switch>
               {this.renderRoutes()}
             </Switch>

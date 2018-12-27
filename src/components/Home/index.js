@@ -18,7 +18,7 @@ export default class Home extends Component {
   }
 
   handleWriteNow = () => {
-    this.props.history.push('/blog/new');
+    this.props.history.push('/user/blog/new');
   }
 
   handleMakeAccount = () => {

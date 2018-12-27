@@ -49,6 +49,17 @@
   right: 90px;
 }
 
+.editor-container {
+  width: 100%;
+  position: relative;
+}
+
+.editor-container > button {
+  position: absolute;
+  right: 0;
+  top: 25px;
+}
+
 .md-editor {
   width: 100%;
   background-color: var(--paper-color);
