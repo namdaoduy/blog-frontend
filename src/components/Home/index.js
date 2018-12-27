@@ -1,44 +1,31 @@
 import React, { Component } from 'react'
+import './../../assets/styles/home.css'
 import { Typography, Button, Grid, Divider, ButtonBase } from '@material-ui/core';
 import { MuiThemeProvider } from '@material-ui/core/styles';
 import Header from './../Common/Header'
-import Space from './../Common/Space'
-import './../../assets/styles/home.css'
 import Paper from '@material-ui/core/Paper';
-import Moment from 'react-moment';
 import theme from './../../configs/theme'
+import NewBlog from './NewBlog'
+import TrendingBlog from './TrendingBlog'
 
 export default class Home extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      blogs: [1,2,3]
+      newBlogs: [1,2,3],
+      trendingBlogs: [1,2,3]
     }
   }
 
   renderNewBlogs = () => {
-    return this.state.blogs.map(blog => (
-      <Grid item xs={12}>
-        <ButtonBase>
-          <Paper className="home-new-blog">
-            <Typography variant="title" className="serif-2">
-              {"How to Eat the Best Fruit (and Not the Bad Fruit)"}
-            </Typography>
-            <Typography variant="body1">
-              {"Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos blanditiis tenetur unde suscipit, quam beatae rerum inventore consectetur, neque doloribus, cupiditate numquam dignissimos laborum fugiat deleniti? Eum quasi quidem quibusdam."}
-            </Typography>
-            <Space height={20} />
-            <Typography variant="subtitle2">
-              Lebron James
-            </Typography>
-            <Typography variant="caption">
-              <Moment fromNow>{blog.postTime || 1545813100264}</Moment>
-              <span class="dot-divider"></span>
-              {blog.timeRead || 10 + " min read"}
-            </Typography>
-          </Paper>
-        </ButtonBase>
-      </Grid>
+    return this.state.newBlogs.map((blog, i) => (
+      <NewBlog blog={blog} key={i}/>
+    ))
+  }
+
+  renderTrendingBlogs = () => {
+    return this.state.trendingBlogs.map((blog, i) => (
+      <TrendingBlog blog={blog} key={i} rank={i+1}/>
     ))
   }
 
@@ -79,6 +66,9 @@ export default class Home extends Component {
                 Trending
               </Typography>
               <Divider />
+              <Grid container spacing={16}>
+                {this.renderTrendingBlogs()}
+              </Grid>
             </Grid>
             
           </Grid>

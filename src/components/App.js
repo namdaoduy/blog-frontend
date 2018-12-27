@@ -24,10 +24,10 @@ export default class App extends Component {
 
   renderRoutes() {
     const routes = [
-      <Route path="/login" component={Home} />,
-      <Route path="/blog/:blog_id" component={Home} />,
-      <Route path="/" component={Home} />,
-      <Redirect to="/" />
+      <Route path="/login" component={Home} key="login"/>,
+      <Route path="/blog/:blog_id" component={Home} key="blog"/>,
+      <Route path="/" component={Home} key="home"/>,
+      <Redirect to="/" key="redirect"/>
     ]
 
     if (!this.state.isLogin) {
@@ -35,7 +35,7 @@ export default class App extends Component {
     }
     else {
       return [...routes,
-        <Route path="/user/blog" component={Home} />
+        <Route path="/user/blogs" component={Home} key="blogs"/>
       ]
     }
   }

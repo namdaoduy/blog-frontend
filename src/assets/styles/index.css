@@ -48,3 +48,15 @@ code {
 .dot-divider:after {
   content: '\00B7';
 }
+
+.btn-base {
+  width: 100%;
+}
+
+.badge {
+  width: 100%;
+}
+
+.badge.left :last-child {
+  left: -11px;
+}
