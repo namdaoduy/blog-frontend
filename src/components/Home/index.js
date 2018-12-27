@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import './../../assets/styles/home.css'
-import { Typography, Button, Grid, Divider, ButtonBase } from '@material-ui/core';
+import { Typography, Button, Grid, Divider } from '@material-ui/core';
 import { MuiThemeProvider } from '@material-ui/core/styles';
 import Header from './../Common/Header'
 import Paper from '@material-ui/core/Paper';
