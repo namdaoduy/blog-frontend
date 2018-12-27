@@ -38,11 +38,16 @@ const Login = Loadable({
   loading: LoadingComponent('Login'),
 });
 
+const User = Loadable({
+  loader: () => import('./User'),
+  loading: LoadingComponent('User'),
+});
+
 export default class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      isLogin: false
+      isLogin: true
     }
   }
 
@@ -57,7 +62,7 @@ export default class App extends Component {
     const routesUser = [
       <Route path="/login" component={Login} key="login"/>,
       <Route path="/blog/:blog_id" component={Blog} key="blog"/>,
-      <Route path="/user/blogs" component={Home} key="blogs"/>,
+      <Route path="/user" component={User} key="user"/>,
       <Route path="/" component={Home} key="home"/>,
       <Redirect to="/" key="redirect"/>
     ]

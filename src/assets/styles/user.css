@@ -1,0 +1,55 @@
+.user-container {
+  min-height: 100vh;
+  background-color: var(--background-color);
+}
+
+.user-inner {
+  width: 90%;
+  margin: auto;
+  margin-top: 20px;
+}
+
+@media (min-width: 768px) {
+  .user-inner {
+    width: 768px;
+  }
+}
+
+@media (min-width: 960px) {
+  .user-inner {
+    width: 960px;
+  }
+}
+
+.user-avatar {
+  width: 90%;
+  height: auto;
+  margin: 10px auto;
+}
+
+.user-profile-blog {
+  padding: 15px;
+  margin: 10px 5px 40px 5px;
+  text-align: left;
+  width: 100%;
+  background-color: var(--paper-color);
+  position: relative;
+}
+
+.user-profile-blog button {
+  position: absolute;
+  bottom: -20px;
+}
+
+.user-profile-blog button:first-of-type {
+  right: 20px;
+}
+
+.user-profile-blog button:nth-of-type(2) {
+  right: 90px;
+}
+
+.md-editor {
+  width: 100%;
+  background-color: var(--paper-color);
+}

@@ -11,6 +11,7 @@
   background-color: var(--paper-color);
   width: 80%;
   padding: 40px 10px;
+  margin-bottom: 100px;
   display: flex;
   justify-content: center;
   align-items: center;

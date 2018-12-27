@@ -17,6 +17,14 @@ export default class Home extends Component {
     }
   }
 
+  handleWriteNow = () => {
+    this.props.history.push('/blog/new');
+  }
+
+  handleMakeAccount = () => {
+    this.props.history.push('/login');
+  }
+
   renderNewBlogs = () => {
     return this.state.newBlogs.map((blog, i) => (
       <NewBlog blog={blog} key={i}/>
@@ -46,8 +54,14 @@ export default class Home extends Component {
                 <Typography variant="subtitle1" gutterBottom>
                   We’ll deliver the best stories and ideas on the topics you care about most straight to your homepage, app, or inbox.
                 </Typography>
-                <Button className="btn-1" variant="contained" color="secondary">Write Now</Button>
-                <Button className="btn-2" variant="outlined" color="secondary">Make account in seconds</Button>
+                <Button className="btn-1" variant="contained" color="secondary"
+                  onClick={this.handleWriteNow}>
+                  Write Now
+                </Button>
+                <Button className="btn-2" variant="outlined" color="secondary"
+                  onClick={this.handleMakeAccount}>
+                  Make account in seconds
+                </Button>
               </Paper>
             </Grid>
 
