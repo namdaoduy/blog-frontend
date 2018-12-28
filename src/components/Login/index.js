@@ -4,12 +4,25 @@ import Paper from '@material-ui/core/Paper'
 import Typography from '@material-ui/core/Typography'
 import { GoogleLogin } from 'react-google-login'
 import configs from './../../configs'
+import API from './../../services/apis'
 
 export default class Login extends Component {
 
   responseGoogle = (res) => {
-    console.log(JSON.stringify(res))
+    console.log(res)
+    if (res.error) {
+      return alert('Login Failed');
+    }
+    else {
+      API.postLogin(res)
+      .then(res => {
+        this.props.handleLogin(res)
+      })
+      .catch(err => console.log(err))
+    }
   }
+
+
 
   render() {
     return(

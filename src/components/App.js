@@ -47,21 +47,22 @@ export default class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      isLogin: true
+      isLogin: localStorage.getItem('justblog_login_state')
     }
+    this.handleLogin = this.handleLogin.bind(this);
   }
 
   renderRoutes() {
     const routes = [
       <Route exact path="/" component={Home} key="home"/>,
-      <Route path="/login" component={Login} key="login"/>,
+      <Route path="/login" render={(props) => 
+        <Login {...props} handleLogin={this.handleLogin} />} key="login"/>,
       <Route path="/blog/:blog_id" component={Blog} key="blog"/>,
       <Redirect to="/" key="redirect"/>
     ]
 
     const routesUser = [
       <Route exact path="/" component={Home} key="home"/>,
-      <Route path="/login" component={Login} key="login"/>,
       <Route path="/blog/:blog_id" component={Blog} key="blog"/>,
       <Route path="/user" component={User} key="user"/>,
       <Redirect to="/" key="redirect"/>
@@ -83,6 +84,19 @@ export default class App extends Component {
       })
       .catch(console.error);
     }, 3000);
+  }
+
+  handleLogin = (res) => {
+    this.setState({isLogin: true}, async () => {
+      localStorage.setItem('justblog_access_token', res.access_token);
+      localStorage.setItem('justblog_user_id', res.user_id);
+      localStorage.setItem('justblog_login_state', 1)
+      return <Redirect to="/user" />
+    })
+  }
+
+  handleLogout = () => {
+    
   }
 
   componentDidMount() {

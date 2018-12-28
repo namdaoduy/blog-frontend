@@ -9,7 +9,6 @@ export default class Profile extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      blogs: [1,2,3]
     }
   }
 
@@ -21,27 +20,30 @@ export default class Profile extends Component {
     console.log("edit")
   }
 
+
   renderBlogs = () => {
-    return this.state.blogs.map((blog, i) => (
+    return this.props.blogs.map((blog, i) => (
       <Paper className="user-profile-blog">
         <Typography variant="h5" className="serif-2">
-          {"How to Eat the Best Fruit (and Not the Bad Fruit)"}
+          {blog.title || "Blog title"}
         </Typography>
         <Typography variant="body1">
-          {"Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos blanditiis tenetur unde suscipit, quam beatae rerum inventore consectetur, neque doloribus, cupiditate numquam dignissimos laborum fugiat deleniti? Eum quasi quidem quibusdam."}
+          {blog.body || "Blog body"}
         </Typography>
         <Typography variant="subtitle2">
-          Lebron James
+          {blog.author || "Blog author"}
         </Typography>
         <Typography variant="caption">
-          <Moment fromNow>{blog.postTime || 1545813100264}</Moment>
+          <Moment fromNow>{blog.created_at || 1545813100264}</Moment>
           <span className="dot-divider"></span>
           {blog.timeRead || 10 + " min read"}
         </Typography>
-        <Button color="secondary" variant="fab">
+        <Button color="secondary" variant="fab" 
+          onClick={() => this.props.handleDelete(blog.id)}>
           <DeleteForever />
         </Button>
-        <Button color="secondary" variant="fab">
+        <Button color="secondary" variant="fab" 
+          onClick={() => this.props.handleClickEdit(blog.id)}>
           <BorderColor />
         </Button>
       </Paper>
@@ -54,10 +56,10 @@ export default class Profile extends Component {
         <Grid item xs={3}>
           <Avatar alt="User Avatar" className="user-avatar" src="https://avatars1.githubusercontent.com/u/20658926?s=460&v=4"/>
           <Typography variant="h5" className="bold">
-            {this.state.username || "User Name"}
+            {"User Name"}
           </Typography>
           <Typography variant="subtitle1">
-            {this.state.email || "useremail@gmail.com"}
+            {"useremail@gmail.com"}
           </Typography>
         </Grid>
 

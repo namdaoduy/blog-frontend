@@ -10,16 +10,33 @@ import Markdown from 'react-markdown'
 import Moment from 'react-moment';
 import Header from './../Common/Header'
 import theme from './../../constants/theme'
+import API from './../../services/apis'
 
 export default class Home extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      blog: mock_md
+      id: this.props.match.params.blog_id,
+      blog: {}
     }
   }
 
+  fetchBlog = () => {
+    API.getBlogById(this.state.id)
+    .then(res => {
+      if (!res.success) return;
+      console.log(res)
+      this.setState({blog: res.data})
+    })
+    .catch(err => console.log(err))
+  }
+
+  componentDidMount() {
+    this.fetchBlog()
+  }
+
   render() {
+    const { blog } = this.state;
     return(
       <MuiThemeProvider theme={theme}>
         <div className="blog-container">
@@ -28,19 +45,19 @@ export default class Home extends Component {
             container spacing={24}>
             <Grid item xs={12}>
               <Typography variant="h3" className="serif-2">
-                {"Building a React Infinite Scroller Component from Scratch"}
+                {blog.title || "Blog title"}
               </Typography>
 
               <div className="blog-info">
                 <Avatar className="author-avatar" alt="Author Avatar" src="https://avatars1.githubusercontent.com/u/20658926?s=460&v=4"/>
                 <div className="blog-info-text">
                   <Typography variant="subtitle2">
-                    {this.state.author || "Author's Name"}
+                    {blog.author || "Author's Name"}
                   </Typography>
                   <Typography variant="caption">
                     <Moment fromNow>{this.state.postTime || 1545813100264}</Moment>
                     <span className="dot-divider"></span>
-                    {this.state.timeRead || 10 + " min read"}
+                    {blog.timeRead || 10 + " min read"}
                   </Typography>
                 </div>
               </div>
@@ -59,7 +76,7 @@ export default class Home extends Component {
                   </Toolbar>
                 </div>
                 <div className="blog-content-right">
-                  <Markdown source={this.state.blog} />
+                  <Markdown source={blog.body} />
                 </div>
               </div>
             </Grid>

@@ -8,12 +8,62 @@ import Paper from '@material-ui/core/Paper'
 import theme from './../../constants/theme'
 import Profile from './Profile'
 import BlogEditor from './BlogEditor'
+import API from './../../services/apis'
 
 export default class User extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      user_id: localStorage.getItem('justblog_user_id'),
+      blogs: []
     }
+  }
+
+  fetchUserBlogs = () => {
+    API.getBlogsByUser(this.state.user_id)
+    .then(res => {
+      this.setState({blogs: res.data})
+    })
+  }
+
+  handleDelete = (id) => {
+    const del = window.confirm('Are you sure to delete?')
+    if (!del) return;
+    const token = localStorage.getItem('justblog_access_token')
+    API.deleteBlogById(id, token)
+    .then(res => {
+      window.location.reload()
+    })
+    .catch(err => console.log(err))
+  }
+
+  handleClickEdit = (id) => {
+    this.props.history.push('/user/blog/' + id);
+  }
+
+  handleClickNew = () => {
+    this.props.history.push('/user/blog/new');
+  }
+
+  handleNew = (data) => {
+    const token = localStorage.getItem('justblog_access_token')
+    API.postBlog(data.title, data.body, token)
+    .then(res => {
+      console.log(res)
+      this.props.history.push('/user')
+    })
+  }
+
+  handleEdit = (data) => {
+    const token = localStorage.getItem('justblog_access_token')
+    API.putBlog(data.id, data.title, data.body, token)
+    .then(res => {
+      console.log(res)
+    })
+  }
+
+  componentDidMount() {
+    this.fetchUserBlogs()
   }
 
   render() {
@@ -24,9 +74,19 @@ export default class User extends Component {
           <Grid className="user-inner"
             container spacing={24}>
             <Switch>
-              <Route path='/user/blog/new' component={BlogEditor}/>
-              <Route path='/user/blog/:blog_id' component={BlogEditor}/>
-              <Route path='/user' component={Profile}/>
+              <Route path='/user/blog/new' render={(props) => 
+                <BlogEditor {...props} type="new" key={"blogNew"+Date.now()}
+                  handleNew={this.handleNew.bind(this)} />}/>
+              <Route path='/user/blog/:blog_id' render={(props) => 
+                <BlogEditor {...props} type="edit" key={"blogEdit"+Date.now()}
+                  handleEdit={this.handleEdit.bind(this)} />}/>
+              <Route path='/user' render={(props) => 
+                <Profile {...props} 
+                  handleClickNew={this.handleClickNew.bind(this)}
+                  handleClickEdit={this.handleClickEdit.bind(this)}
+                  handleDelete={this.handleDelete} 
+                  handleEdit={this.handleEdit} 
+                  blogs={this.state.blogs}/>}/>
             </Switch>
           </Grid>
         </div>

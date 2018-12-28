@@ -7,6 +7,7 @@ import Paper from '@material-ui/core/Paper'
 import theme from './../../constants/theme'
 import NewBlog from './NewBlog'
 import TrendingBlog from './TrendingBlog'
+import API from './../../services/apis'
 
 export default class Home extends Component {
   constructor(props) {
@@ -27,7 +28,7 @@ export default class Home extends Component {
 
   renderNewBlogs = () => {
     return this.state.newBlogs.map((blog, i) => (
-      <NewBlog blog={blog} key={i}/>
+      <NewBlog blog={blog} history={this.props.history} key={i}/>
     ))
   }
 
@@ -35,6 +36,20 @@ export default class Home extends Component {
     return this.state.trendingBlogs.map((blog, i) => (
       <TrendingBlog blog={blog} key={i} rank={i+1}/>
     ))
+  }
+
+  fetchNewBlogs = () => {
+    API.getAllBlogs()
+    .then(res => {
+      if (!res.success) return;
+      console.log(res)
+      this.setState({newBlogs: res.data})
+    })
+    .catch(err => console.log(err))
+  }
+
+  componentDidMount() {
+    this.fetchNewBlogs()
   }
 
   render() {

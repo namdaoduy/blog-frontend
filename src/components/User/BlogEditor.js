@@ -9,17 +9,15 @@ import BorderColor from '@material-ui/icons/BorderColor'
 import Moment from 'react-moment'
 import 'draft-js/dist/Draft.css'
 import 'react-mde/lib/styles/css/react-mde-all.css';
+import API from './../../services/apis'
 
 export default class BlogEditor extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      id: this.props.blogId || null,
+      id: this.props.match.params.blog_id || 0,
       title: "Your title here",
-      author: "",
-      body: "Your body here",
-      createdAt: null,
-      updatedAt: null
+      author: ""
     }
 
     this.converter = new Showdown.Converter({
@@ -30,11 +28,40 @@ export default class BlogEditor extends Component {
 
   handleBodyChange = (body) => {
     this.setState({ body });
-  };
+  }
 
   handleTitleChange = (e) => {
     this.setState({ title: e.target.value });
-  };
+  }
+
+  onSubmit = () => {
+    const { id, title, body } = this.state;
+    const data = { id, title, body}
+    if (this.props.type === "edit") {
+      this.props.handleEdit(data);
+    }
+    else if (this.props.type === "new") {
+      this.props.handleNew(data);
+    }
+  }
+
+  fetchBlog = (id) => {
+    API.getBlogById(id)
+    .then(res => {
+      if (!res.success) return;
+      this.setState({
+        title: res.data.title,
+        body: res.data.body,
+        author: res.data.author
+      })
+    })
+    .catch(err => console.log(err))
+  }
+
+
+  componentDidMount() {
+    this.fetchBlog(this.state.id);
+  }
   
   render() {
     return(
@@ -49,7 +76,8 @@ export default class BlogEditor extends Component {
           variant="outlined"
         />
 
-        <Button variant="contained" color="secondary">Submit</Button>
+        <Button variant="contained" color="secondary"
+          onClick={this.onSubmit}>Submit</Button>
 
         <ReactMde
           className="md-editor"
