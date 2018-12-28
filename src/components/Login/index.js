@@ -3,12 +3,12 @@ import './../../assets/styles/login.css'
 import Paper from '@material-ui/core/Paper'
 import Typography from '@material-ui/core/Typography'
 import { GoogleLogin } from 'react-google-login'
-import googleClientConfigs from './../../configs/credentials'
+import configs from './../../configs'
 
 export default class Login extends Component {
 
   responseGoogle = (res) => {
-    console.log(res)
+    console.log(JSON.stringify(res))
   }
 
   render() {
@@ -25,7 +25,7 @@ export default class Login extends Component {
             Create an account to personalize your homepage, follow your favorite authors and publications, applaud stories you love, and more.
           </Typography>
           <GoogleLogin
-            clientId={googleClientConfigs.web.client_id}
+            clientId={configs.googleClientConfigs.web.client_id}
             scope="profile email"
             buttonText="Login with Google"
             onSuccess={this.responseGoogle}

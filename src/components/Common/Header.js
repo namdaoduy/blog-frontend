@@ -11,7 +11,7 @@ import NotificationsIcon from '@material-ui/icons/Notifications';
 import { MuiThemeProvider } from '@material-ui/core/styles';
 
 import './../../assets/styles/common-header.css'
-import theme from './../../configs/theme'
+import theme from './../../constants/theme'
 
 export default class Header extends Component {
   constructor(props) {

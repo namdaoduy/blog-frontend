@@ -9,7 +9,7 @@ import Share from '@material-ui/icons/Share'
 import Markdown from 'react-markdown'
 import Moment from 'react-moment';
 import Header from './../Common/Header'
-import theme from './../../configs/theme'
+import theme from './../../constants/theme'
 
 export default class Home extends Component {
   constructor(props) {

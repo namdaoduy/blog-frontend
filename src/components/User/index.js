@@ -5,7 +5,7 @@ import { Typography, Button, Grid, Divider, Avatar } from '@material-ui/core'
 import { MuiThemeProvider } from '@material-ui/core/styles'
 import Header from './../Common/Header'
 import Paper from '@material-ui/core/Paper'
-import theme from './../../configs/theme'
+import theme from './../../constants/theme'
 import Profile from './Profile'
 import BlogEditor from './BlogEditor'
 
