@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import IconButton from '@material-ui/core/IconButton';
@@ -10,15 +10,19 @@ import AccountCircle from '@material-ui/icons/AccountCircle';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import { MuiThemeProvider } from '@material-ui/core/styles';
 
-import './../../assets/styles/common-header.css'
-import theme from './../../constants/theme'
+import '../../assets/styles/common-header.css';
+import { Button, ButtonBase } from '@material-ui/core';
+import theme from '../../constants/theme';
+
+import history from '../../utils/history';
 
 export default class Header extends Component {
   constructor(props) {
     super(props);
     this.state = {
       anchorUserMenu: null,
-    }
+      isLogin: localStorage.getItem('justblog_login_state') || false,
+    };
   }
 
   handleOpenUserMenu = (e) => {
@@ -33,8 +37,24 @@ export default class Header extends Component {
     });
   }
 
+  handleProfile = () => {
+    history.push('/user');
+  }
+
+  handleLogin = () => {
+    history.push('/login');
+  }
+
+  handleLogout = () => {
+    history.push('/logout');
+  }
+
+  handleHome = () => {
+    history.push('/');
+  }
+
   render() {
-    return(
+    return (
       <MuiThemeProvider theme={theme}>
         <AppBar className="header" position="sticky" color="secondary">
           <Toolbar>
@@ -44,9 +64,11 @@ export default class Header extends Component {
               </IconButton>
             </div>
             <div className="header-center">
-              <Typography className="header-title serif" variant="h4" color="inherit" noWrap>
-                Just Blog
-              </Typography>
+              <ButtonBase onClick={this.handleHome}>
+                <Typography className="header-title serif" variant="h4" color="inherit" noWrap>
+                  Just Blog
+                </Typography>
+              </ButtonBase>
             </div>
             <div className="header-right">
               <IconButton color="inherit">
@@ -58,25 +80,30 @@ export default class Header extends Component {
                 aria-owns={this.state.isUserMenuOpen ? 'user-popper' : undefined}
                 aria-haspopup="true"
                 onClick={this.handleOpenUserMenu}
-                color="inherit">
+                color="inherit"
+              >
                 <AccountCircle />
               </IconButton>
-              <Popover 
+              <Popover
                 id="user-popper"
                 open={!!this.state.anchorUserMenu}
                 anchorEl={this.state.anchorUserMenu}
                 onClose={this.handleCloseUserMenu}
                 anchorOrigin={{ vertical: 'bottom', horizontal: 'left' }}
-                transformOrigin={{ vertical: 'top', horizontal: 'left' }}>
-                <Typography>
-                  Popover
-                </Typography>
+                transformOrigin={{ vertical: 'top', horizontal: 'left' }}
+              >
+                <Button onClick={this.handleProfile}>Profile</Button>
+                {
+                  !this.state.isLogin
+                    ? <Button onClick={this.handleLogin}>Login</Button>
+                    : <Button onClick={this.handleLogout}>Log Out</Button>
+                }
               </Popover>
             </div>
           </Toolbar>
         </AppBar>
       </MuiThemeProvider>
-      
-    )
+
+    );
   }
 }

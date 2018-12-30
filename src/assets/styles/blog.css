@@ -51,6 +51,10 @@
   position: relative;
 }
 
+.blog-content-right {
+  flex: 1;
+}
+
 .blog-btn-list {
   display: flex;
   position: fixed;

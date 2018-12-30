@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom'
+import { Router, Switch, Route, Redirect } from 'react-router-dom';
 import Loadable from 'react-loadable';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import JssProvider from 'react-jss/lib/JssProvider';
@@ -43,64 +43,73 @@ const User = Loadable({
   loading: LoadingComponent('User'),
 });
 
+const Logout = Loadable({
+  loader: () => import('./Logout'),
+  loading: LoadingComponent('Logout'),
+});
+
 export default class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      isLogin: localStorage.getItem('justblog_login_state')
-    }
+      isLogin: localStorage.getItem('justblog_login_state'),
+    };
     this.handleLogin = this.handleLogin.bind(this);
+  }
+
+  componentDidMount() {
+    this.preloadChunks();
   }
 
   renderRoutes() {
     const routes = [
-      <Route exact path="/" component={Home} key="home"/>,
-      <Route path="/login" render={(props) => 
-        <Login {...props} handleLogin={this.handleLogin} />} key="login"/>,
-      <Route path="/blog/:blog_id" component={Blog} key="blog"/>,
-      <Redirect to="/" key="redirect"/>
-    ]
+      <Route exact path="/" component={Home} key="home" />,
+      <Route
+        path="/login"
+        render={props => <Login {...props} handleLogin={this.handleLogin} />}
+        key="login"
+      />,
+      <Route path="/blog/:blog_id" component={Blog} key="blog" />,
+      <Route path="/logout" component={Logout} key="logout" />,
+      <Redirect to="/" key="redirect" />,
+    ];
 
     const routesUser = [
-      <Route exact path="/" component={Home} key="home"/>,
-      <Route path="/blog/:blog_id" component={Blog} key="blog"/>,
-      <Route path="/user" component={User} key="user"/>,
-      <Redirect to="/" key="redirect"/>
-    ]
+      <Route exact path="/" component={Home} key="home" />,
+      <Route path="/blog/:blog_id" component={Blog} key="blog" />,
+      <Route path="/user" component={User} key="user" />,
+      <Route path="/logout" component={Logout} key="logout" />,
+      <Redirect to="/" key="redirect" />,
+    ];
 
     if (!this.state.isLogin) {
       return routes;
     }
-    else {
-      return routesUser;
-    }
+
+    return routesUser;
   }
 
   preloadChunks() {
     setTimeout(() => {
       Loadable.preloadAll()
-      .then(() => {
-        console.log('preload all chunks completed');
-      })
-      .catch(console.error);
+        .then(() => {
+          console.log('preload all chunks completed');
+        })
+        .catch(console.error);
     }, 3000);
   }
 
   handleLogin = (res) => {
-    this.setState({isLogin: true}, async () => {
+    this.setState({ isLogin: true }, async () => {
       localStorage.setItem('justblog_access_token', res.access_token);
       localStorage.setItem('justblog_user_id', res.user_id);
-      localStorage.setItem('justblog_login_state', 1)
-      return <Redirect to="/user" />
-    })
+      localStorage.setItem('justblog_login_state', 1);
+      return <Redirect to="/user" />;
+    });
   }
 
   handleLogout = () => {
-    
-  }
 
-  componentDidMount() {
-    this.preloadChunks();
   }
 
   render() {

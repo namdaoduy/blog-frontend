@@ -1,66 +1,68 @@
-import React, { Component } from 'react'
-import { Typography, Button, Grid, Divider, Avatar } from '@material-ui/core'
-import Paper from '@material-ui/core/Paper'
-import DeleteForever from '@material-ui/icons/DeleteForever'
-import BorderColor from '@material-ui/icons/BorderColor'
-import Moment from 'react-moment'
+import React, { Component } from 'react';
+import { Typography, Button, Grid, Divider, Avatar } from '@material-ui/core';
+import Paper from '@material-ui/core/Paper';
+import DeleteForever from '@material-ui/icons/DeleteForever';
+import BorderColor from '@material-ui/icons/BorderColor';
+import Moment from 'react-moment';
 
 export default class Profile extends Component {
   constructor(props) {
     super(props);
     this.state = {
-    }
+    };
   }
 
-  handleDelete = (id) => {
-    console.log(id)
-  }
+  renderBlogs = () => this.props.blogs.map((blog, i) => (
+    <Paper className="user-profile-blog">
+      <Typography variant="h5" className="serif-2">
+        {blog.title || 'Blog title'}
+      </Typography>
+      <Typography variant="body1" noWrap>
+        {blog.body || 'Blog body'}
+      </Typography>
+      <Typography variant="subtitle2">
+        {blog.author || 'Blog author'}
+      </Typography>
+      <Typography variant="caption">
+        <Moment fromNow>{blog.created_at || 1545813100264}</Moment>
+        <span className="dot-divider" />
+        {blog.timeRead || `${10} min read`}
+      </Typography>
+      <Button
+        color="secondary"
+        variant="fab"
+        onClick={() => this.props.handleDelete(blog.id)}
+      >
+        <DeleteForever />
+      </Button>
+      <Button
+        color="secondary"
+        variant="fab"
+        onClick={() => this.props.handleClickEdit(blog.id)}
+      >
+        <BorderColor />
+      </Button>
+    </Paper>
+  ))
 
-  handleEdit = () => {
-    console.log("edit")
-  }
-
-
-  renderBlogs = () => {
-    return this.props.blogs.map((blog, i) => (
-      <Paper className="user-profile-blog">
-        <Typography variant="h5" className="serif-2">
-          {blog.title || "Blog title"}
-        </Typography>
-        <Typography variant="body1">
-          {blog.body || "Blog body"}
-        </Typography>
-        <Typography variant="subtitle2">
-          {blog.author || "Blog author"}
-        </Typography>
-        <Typography variant="caption">
-          <Moment fromNow>{blog.created_at || 1545813100264}</Moment>
-          <span className="dot-divider"></span>
-          {blog.timeRead || 10 + " min read"}
-        </Typography>
-        <Button color="secondary" variant="fab" 
-          onClick={() => this.props.handleDelete(blog.id)}>
-          <DeleteForever />
-        </Button>
-        <Button color="secondary" variant="fab" 
-          onClick={() => this.props.handleClickEdit(blog.id)}>
-          <BorderColor />
-        </Button>
-      </Paper>
-    ))
-  }
-  
   render() {
-    return(
+    return (
       <React.Fragment>
         <Grid item xs={3}>
-          <Avatar alt="User Avatar" className="user-avatar" src="https://avatars1.githubusercontent.com/u/20658926?s=460&v=4"/>
+          <Avatar alt="User Avatar" className="user-avatar" src="https://avatars1.githubusercontent.com/u/20658926?s=460&v=4" />
           <Typography variant="h5" className="bold">
-            {"User Name"}
+            {'User Name'}
           </Typography>
           <Typography variant="subtitle1">
-            {"useremail@gmail.com"}
+            {'useremail@gmail.com'}
           </Typography>
+          <Button
+            variant="contained"
+            color="secondary"
+            onClick={this.props.handleClickNew}
+          >
+            New Blog
+          </Button>
         </Grid>
 
         <Grid item xs={9}>
@@ -71,6 +73,6 @@ export default class Profile extends Component {
           {this.renderBlogs()}
         </Grid>
       </React.Fragment>
-    )
+    );
   }
 }

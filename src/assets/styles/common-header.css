@@ -11,6 +11,11 @@
   flex: 1;
 }
 
+.header-center > button {
+  margin: auto;
+  display: block;
+}
+
 .header-center h4 {
   width: fit-content;
   margin: auto;

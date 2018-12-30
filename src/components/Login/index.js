@@ -1,31 +1,28 @@
-import React, { Component } from 'react'
-import './../../assets/styles/login.css'
-import Paper from '@material-ui/core/Paper'
-import Typography from '@material-ui/core/Typography'
-import { GoogleLogin } from 'react-google-login'
-import configs from './../../configs'
-import API from './../../services/apis'
+import React, { Component } from 'react';
+import '../../assets/styles/login.css';
+import Paper from '@material-ui/core/Paper';
+import Typography from '@material-ui/core/Typography';
+import { GoogleLogin } from 'react-google-login';
+import configs from '../../configs';
+import API from '../../services/apis';
 
 export default class Login extends Component {
-
   responseGoogle = (res) => {
-    console.log(res)
+    console.log(res);
     if (res.error) {
       return alert('Login Failed');
     }
-    else {
-      API.postLogin(res)
-      .then(res => {
-        this.props.handleLogin(res)
+
+    API.postLogin(res)
+      .then((res) => {
+        this.props.handleLogin(res);
       })
-      .catch(err => console.log(err))
-    }
+      .catch(err => console.log(err));
   }
 
 
-
   render() {
-    return(
+    return (
       <div className="login-container">
         <Typography variant="h2" className="serif" gutterBottom>
           Just Blog
@@ -46,6 +43,6 @@ export default class Login extends Component {
           />
         </Paper>
       </div>
-    )
+    );
   }
 }

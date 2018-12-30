@@ -3,7 +3,7 @@ import localConfigs from './local';
 // import prodConfigs from './prod';
 // import stagingConfigs from './staging';
 
-let configs = localConfigs;
+const configs = localConfigs;
 
 // if (process.env.REACT_APP_ENV === 'prod') {
 //   configs = prodConfigs;

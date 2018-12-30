@@ -1,4 +1,4 @@
-import configs from './../configs'
+import configs from '../configs';
 
 const API_URL = configs.apiUrl;
 
@@ -7,7 +7,7 @@ class _API {
     const res = await fetch(`${API_URL}/login`, {
       headers: { 'Content-Type': 'application/json' },
       method: 'POST',
-      body: JSON.stringify(googleResponse)
+      body: JSON.stringify(googleResponse),
     });
     const result = await res.json();
     return result;
@@ -33,14 +33,14 @@ class _API {
 
   async postBlog(title, body, token) {
     const res = await fetch(`${API_URL}/blog`, {
-      headers: { 
+      headers: {
         'Content-Type': 'application/json',
-        'Authorization': 'Bearer ' + token
+        Authorization: `Bearer ${token}`,
       },
       method: 'POST',
       body: JSON.stringify({
-        title, body
-      })
+        title, body,
+      }),
     });
     const result = await res.json();
     return result;
@@ -48,14 +48,14 @@ class _API {
 
   async putBlog(id, title, body, token) {
     const res = await fetch(`${API_URL}/blog/${id}`, {
-      headers: { 
+      headers: {
         'Content-Type': 'application/json',
-        'Authorization': 'Bearer ' + token
+        Authorization: `Bearer ${token}`,
       },
       method: 'PUT',
       body: JSON.stringify({
-        id, title, body
-      })
+        id, title, body,
+      }),
     });
     const result = await res.json();
     return result;
@@ -63,11 +63,11 @@ class _API {
 
   async deleteBlogById(id, token) {
     const res = await fetch(`${API_URL}/blog/${id}`, {
-      headers: { 
+      headers: {
         'Content-Type': 'application/json',
-        'Authorization': 'Bearer ' + token
+        Authorization: `Bearer ${token}`,
       },
-      method: 'DELETE'
+      method: 'DELETE',
     });
     const result = await res.json();
     return result;
