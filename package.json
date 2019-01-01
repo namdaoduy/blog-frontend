@@ -19,8 +19,10 @@
     "react-markdown": "^4.0.4",
     "react-mde": "^6.0.0-alpha.1",
     "react-moment": "^0.8.4",
+    "react-redux": "^6.0.0",
     "react-router-dom": "^4.3.1",
     "react-scripts": "2.1.1",
+    "redux": "^4.0.1",
     "showdown": "^1.9.0"
   },
   "scripts": {

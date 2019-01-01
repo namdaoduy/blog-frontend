@@ -57,6 +57,7 @@ class _API {
         id, title, body,
       }),
     });
+    console.log(res);
     const result = await res.json();
     return result;
   }

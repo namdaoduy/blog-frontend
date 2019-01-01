@@ -18,7 +18,7 @@ export default class Home extends Component {
     const { match } = this.props;
     this.state = {
       id: match.params.blog_id,
-      blog: null,
+      blog: {},
     };
   }
 

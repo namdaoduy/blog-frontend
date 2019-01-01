@@ -39,8 +39,13 @@ const Login = Loadable({
 });
 
 const User = Loadable({
-  loader: () => import('./User'),
+  loader: () => import('./User/Profile'),
   loading: LoadingComponent('User'),
+});
+
+const BlogEditor = Loadable({
+  loader: () => import('./User/BlogEditor'),
+  loading: LoadingComponent('BlogEditor'),
 });
 
 const Logout = Loadable({
@@ -77,6 +82,7 @@ export default class App extends Component {
     const routesUser = [
       <Route exact path="/" component={Home} key="home" />,
       <Route path="/blog/:blog_id" component={Blog} key="blog" />,
+      <Route path="/user/blog/:blog_id" component={BlogEditor} key="blogEditor" />,
       <Route path="/user" component={User} key="user" />,
       <Route path="/logout" component={Logout} key="logout" />,
       <Redirect to="/" key="redirect" />,
