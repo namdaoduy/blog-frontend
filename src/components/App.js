@@ -107,8 +107,8 @@ export default class App extends Component {
 
   handleLogin = (res) => {
     this.setState({ isLogin: true }, async () => {
-      localStorage.setItem('justblog_access_token', res.access_token);
-      localStorage.setItem('justblog_user_id', res.user_id);
+      localStorage.setItem('justblog_access_token', res.data.access_token);
+      localStorage.setItem('justblog_user_id', res.data.user_id);
       localStorage.setItem('justblog_login_state', 1);
       return <Redirect to="/user" />;
     });

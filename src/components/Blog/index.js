@@ -5,6 +5,7 @@ import MuiThemeProvider from '@material-ui/core/styles/MuiThemeProvider';
 import Toolbar from '@material-ui/core/Toolbar';
 import Avatar from '@material-ui/core/Avatar';
 import FavoriteBorder from '@material-ui/icons/FavoriteBorder';
+import Favorite from '@material-ui/icons/Favorite';
 import Share from '@material-ui/icons/Share';
 import Markdown from 'react-markdown';
 import Moment from 'react-moment';
@@ -19,6 +20,7 @@ export default class Home extends Component {
     this.state = {
       id: match.params.blog_id,
       blog: {},
+      isLiked: false,
     };
   }
 
@@ -37,8 +39,28 @@ export default class Home extends Component {
       .catch(err => console.log(err));
   };
 
+  fetchLike = () => {
+    const { id } = this.state;
+    const token = localStorage.getItem('justblog_access_token');
+    API.getLikeBlog(id, token)
+      .then((res) => {
+        if (!res.success) return;
+        console.log(res);
+        this.setState({ isLiked: true });
+      })
+      .catch(err => console.log(err));
+  }
+
+  onLike = () => {
+    const { isLiked } = this.state;
+    if (isLiked) {
+      return;
+    }
+    this.fetchLike();
+  }
+
   render() {
-    const { blog, postTime } = this.state;
+    const { blog, postTime, isLiked } = this.state;
     return (
       <MuiThemeProvider theme={theme}>
         <div className="blog-container">
@@ -70,9 +92,12 @@ export default class Home extends Component {
               <div className="blog-content">
                 <div className="blog-content-left">
                   <Toolbar className="blog-btn-list">
-                    <Tooltip title="1000" placement="left">
-                      <IconButton color="secondary">
-                        <FavoriteBorder />
+                    <Tooltip title={blog.like} placement="left">
+                      <IconButton
+                        color="secondary"
+                        onClick={this.onLike}
+                      >
+                        {isLiked ? <Favorite /> : <FavoriteBorder />}
                       </IconButton>
                     </Tooltip>
                     <IconButton color="secondary">
