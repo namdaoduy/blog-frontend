@@ -1,11 +1,18 @@
-Blog Project
-Web app bao gồm:
-- Trang chủ list các bài blog
-- Chọn vào bài blog sẽ đến trang riêng của nó
-- Trang đăng nhập bằng Google login
-- Tạo blog mới (cần có tài khoản)
-- Quản lý blog của mình viết (CRUD)
-- Like bài blog (Cần tài khoản, giống clap trên Medium)
+## Just Blog Frontend - Fullstack Blog Project
+---
+### Installation and Setup
+Install npm and clone this project:
 
-REST API bằng Flask, sử dụng SQLAlchemy
-- Auth protected API bằng access token
+    $ mkdir ~/just-blog
+    $ cd ~/just-blog
+    $ git clone https://github.com/namdaoduy/blog-frontend.git blog-frontend
+
+Install packages:
+
+    $ npm i
+    
+### Local Development
+
+To start hot debug React app:
+
+    $ npm start
