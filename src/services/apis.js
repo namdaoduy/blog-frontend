@@ -19,20 +19,20 @@ class _API {
     return result;
   }
 
-  async getBlogById(id) {
-    const res = await fetch(`${API_URL}/blog/${id}`);
+  async getBlogById(blog_id) {
+    const res = await fetch(`${API_URL}/blogs/${blog_id}`);
     const result = await res.json();
     return result;
   }
 
   async getBlogsByUser(user_id) {
-    const res = await fetch(`${API_URL}/user/blogs/${user_id}`);
+    const res = await fetch(`${API_URL}/users/${user_id}/blogs`);
     const result = await res.json();
     return result;
   }
 
   async postBlog(title, body, token) {
-    const res = await fetch(`${API_URL}/blog`, {
+    const res = await fetch(`${API_URL}/blogs`, {
       headers: {
         'Content-Type': 'application/json',
         Authorization: `Bearer ${token}`,
@@ -46,15 +46,15 @@ class _API {
     return result;
   }
 
-  async putBlog(id, title, body, token) {
-    const res = await fetch(`${API_URL}/blog/${id}`, {
+  async putBlog(blog_id, title, body, token) {
+    const res = await fetch(`${API_URL}/blogs/${blog_id}`, {
       headers: {
         'Content-Type': 'application/json',
         Authorization: `Bearer ${token}`,
       },
       method: 'PUT',
       body: JSON.stringify({
-        id, title, body,
+        blog_id, title, body,
       }),
     });
     console.log(res);
@@ -62,8 +62,8 @@ class _API {
     return result;
   }
 
-  async deleteBlogById(id, token) {
-    const res = await fetch(`${API_URL}/blog/${id}`, {
+  async deleteBlogById(blog_id, token) {
+    const res = await fetch(`${API_URL}/blogs/${blog_id}`, {
       headers: {
         'Content-Type': 'application/json',
         Authorization: `Bearer ${token}`,
@@ -75,7 +75,7 @@ class _API {
   }
 
   async getLikeBlog(blog_id, token) {
-    const res = await fetch(`${API_URL}/like/blog/${blog_id}`, {
+    const res = await fetch(`${API_URL}/blogs/${blog_id}/like`, {
       headers: {
         'Content-Type': 'application/json',
         Authorization: `Bearer ${token}`,
