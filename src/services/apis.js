@@ -13,6 +13,14 @@ class _API {
     return result;
   }
 
+  async getUserInfo(user_id) {
+    const res = await fetch(`${API_URL}/users/${user_id}`, {
+      headers: { 'Content-Type': 'application/json' },
+    });
+    const result = await res.json();
+    return result;
+  }
+
   async getAllBlogs() {
     const res = await fetch(`${API_URL}/blogs`);
     const result = await res.json();

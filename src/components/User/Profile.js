@@ -15,13 +15,23 @@ export default class Profile extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      user_id: localStorage.getItem('justblog_user_id'),
+      user_id: localStorage.getItem('justblog_user_id') || 0,
       blogs: [],
+      user_info: {},
     };
   }
 
   componentDidMount() {
+    this.fetchUserInfo();
     this.fetchUserBlogs();
+  }
+
+  fetchUserInfo = () => {
+    const { user_id } = this.state;
+    API.getUserInfo(user_id)
+      .then((res) => {
+        this.setState({ user_info: res.data });
+      });
   }
 
   fetchUserBlogs = () => {
@@ -88,6 +98,7 @@ export default class Profile extends Component {
   }
 
   render() {
+    const { name, email, picture } = this.state.user_info;
     return (
       <MuiThemeProvider theme={theme}>
         <div className="user-container">
@@ -98,12 +109,12 @@ export default class Profile extends Component {
             spacing={24}
           >
             <Grid item xs={3}>
-              <Avatar alt="User Avatar" className="user-avatar" src="https://avatars1.githubusercontent.com/u/20658926?s=460&v=4" />
+              <Avatar alt="User Avatar" className="user-avatar" src={picture || null} />
               <Typography variant="h5" className="bold">
-                {'User Name'}
+                {name || 'User Name'}
               </Typography>
               <Typography variant="subtitle1">
-                {'useremail@gmail.com'}
+                {email || 'useremail@gmail.com'}
               </Typography>
               <Button
                 variant="contained"
