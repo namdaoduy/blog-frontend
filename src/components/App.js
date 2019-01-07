@@ -52,19 +52,25 @@ export default class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      isLogin: false,
+      isLogin: localStorage.getItem('justblog_login_state') || false,
     };
     this.handleLogin = this.handleLogin.bind(this);
   }
 
   componentDidMount() {
-    this.checkLogin();
     this.preloadChunks();
   }
 
+  componentDidUpdate() {
+    this.checkLogin();
+  }
+
   checkLogin() {
+    const loginState = localStorage.getItem('justblog_login_state');
+    const { isLogin } = this.state;
+    if (isLogin === loginState) return;
     this.setState({
-      isLogin: localStorage.getItem('justblog_login_state'),
+      isLogin: loginState,
     });
   }
 

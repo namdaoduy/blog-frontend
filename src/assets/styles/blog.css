@@ -61,3 +61,16 @@
   flex-direction: column;
   margin-top: 30px;
 }
+
+.blog-markdown {
+  
+}
+
+.blog-markdown img {
+  width: 100%;
+}
+
+.blog-markdown p {
+  font-size: 20px;
+  line-height: 1.5em;
+}

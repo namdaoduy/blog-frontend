@@ -60,7 +60,7 @@ export default class Home extends Component {
   }
 
   render() {
-    const { blog, postTime, isLiked } = this.state;
+    const { blog, isLiked } = this.state;
     return (
       <MuiThemeProvider theme={theme}>
         <div className="blog-container">
@@ -82,7 +82,7 @@ export default class Home extends Component {
                     {blog.author || "Author's Name"}
                   </Typography>
                   <Typography variant="caption">
-                    <Moment fromNow>{postTime || 1545813100264}</Moment>
+                    <Moment fromNow>{blog.created_at || 1545813100264}</Moment>
                     <span className="dot-divider" />
                     {`${blog.timeRead || 10} min read`}
                   </Typography>
@@ -106,7 +106,7 @@ export default class Home extends Component {
                   </Toolbar>
                 </div>
                 <div className="blog-content-right">
-                  <Markdown source={blog.body} />
+                  <Markdown source={blog.body} className="blog-markdown" />
                 </div>
               </div>
             </Grid>
