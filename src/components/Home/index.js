@@ -19,6 +19,10 @@ export default class Home extends Component {
   }
 
   componentDidMount() {
+    const { logout, handleLogout } = this.props;
+    if (logout) {
+      handleLogout();
+    }
     this.fetchNewBlogs();
   }
 

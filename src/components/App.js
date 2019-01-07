@@ -48,25 +48,28 @@ const BlogEditor = Loadable({
   loading: LoadingComponent('BlogEditor'),
 });
 
-const Logout = Loadable({
-  loader: () => import('./Logout'),
-  loading: LoadingComponent('Logout'),
-});
-
 export default class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      isLogin: localStorage.getItem('justblog_login_state'),
+      isLogin: false,
     };
     this.handleLogin = this.handleLogin.bind(this);
   }
 
   componentDidMount() {
+    this.checkLogin();
     this.preloadChunks();
   }
 
+  checkLogin() {
+    this.setState({
+      isLogin: localStorage.getItem('justblog_login_state'),
+    });
+  }
+
   renderRoutes() {
+    const { isLogin } = this.state;
     const routes = [
       <Route exact path="/" component={Home} key="home" />,
       <Route
@@ -75,7 +78,11 @@ export default class App extends Component {
         key="login"
       />,
       <Route path="/blog/:blog_id" component={Blog} key="blog" />,
-      <Route path="/logout" component={Logout} key="logout" />,
+      <Route
+        path="/logout"
+        render={props => <Home {...props} logout handleLogout={this.handleLogout} />}
+        key="logout"
+      />,
       <Redirect to="/" key="redirect" />,
     ];
 
@@ -84,11 +91,15 @@ export default class App extends Component {
       <Route path="/blog/:blog_id" component={Blog} key="blog" />,
       <Route path="/user/blog/:blog_id" component={BlogEditor} key="blogEditor" />,
       <Route path="/user" component={User} key="user" />,
-      <Route path="/logout" component={Logout} key="logout" />,
+      <Route
+        path="/logout"
+        render={props => <Home {...props} logout handleLogout={this.handleLogout} />}
+        key="logout"
+      />,
       <Redirect to="/" key="redirect" />,
     ];
 
-    if (!this.state.isLogin) {
+    if (!isLogin) {
       return routes;
     }
 
@@ -110,12 +121,17 @@ export default class App extends Component {
       localStorage.setItem('justblog_access_token', res.data.access_token);
       localStorage.setItem('justblog_user_id', res.data.user_id);
       localStorage.setItem('justblog_login_state', 1);
-      return <Redirect to="/user" />;
+      history.push('/user');
     });
   }
 
   handleLogout = () => {
-
+    this.setState({ isLogin: false }, async () => {
+      localStorage.removeItem('justblog_access_token');
+      localStorage.removeItem('justblog_user_id');
+      localStorage.removeItem('justblog_login_state');
+      history.push('/');
+    });
   }
 
   render() {
