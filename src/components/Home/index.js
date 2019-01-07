@@ -8,6 +8,7 @@ import theme from '../../constants/theme';
 import NewBlog from './NewBlog';
 import TrendingBlog from './TrendingBlog';
 import API from '../../services/apis';
+import history from '../../utils/history';
 
 export default class Home extends Component {
   constructor(props) {
@@ -22,20 +23,22 @@ export default class Home extends Component {
     const { logout, handleLogout } = this.props;
     if (logout) {
       handleLogout();
+      return;
     }
     this.fetchNewBlogs();
+    this.fetchTrendingBlogs();
   }
 
   handleWriteNow = () => {
-    this.props.history.push('/user/blog/new');
+    history.push('/user/blog/new');
   }
 
   handleMakeAccount = () => {
-    this.props.history.push('/login');
+    history.push('/login');
   }
 
   renderNewBlogs = () => this.state.newBlogs.map((blog, i) => (
-    <NewBlog blog={blog} history={this.props.history} key={i} />
+    <NewBlog blog={blog} key={i} />
   ))
 
   renderTrendingBlogs = () => this.state.trendingBlogs.map((blog, i) => (
@@ -46,8 +49,16 @@ export default class Home extends Component {
     API.getAllBlogs()
       .then((res) => {
         if (!res.success) return;
-        console.log(res);
         this.setState({ newBlogs: res.data });
+      })
+      .catch(err => console.log(err));
+  }
+
+  fetchTrendingBlogs = () => {
+    API.getTrendingBlogs()
+      .then((res) => {
+        if (!res.success) return;
+        this.setState({ trendingBlogs: res.data });
       })
       .catch(err => console.log(err));
   }

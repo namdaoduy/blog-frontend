@@ -57,7 +57,8 @@ export default class BlogEditor extends Component {
       .then((res) => {
         console.log(res);
         history.push('/user');
-      });
+      })
+      .catch(err => console.log(err));
   }
 
   handleEdit = (data) => {
@@ -66,7 +67,8 @@ export default class BlogEditor extends Component {
       .then((res) => {
         console.log(res);
         history.push('/user');
-      });
+      })
+      .catch(err => console.log(err));
   }
 
   validateInput = () => {

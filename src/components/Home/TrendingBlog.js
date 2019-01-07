@@ -2,27 +2,32 @@ import React, { Component } from 'react';
 import { Typography, Grid, ButtonBase, Badge } from '@material-ui/core';
 import Paper from '@material-ui/core/Paper';
 import Moment from 'react-moment';
+import history from '../../utils/history';
 
 export default class TrendingBlog extends Component {
+  handleClick = () => {
+    const { blog } = this.props;
+    history.push(`/blog/${blog.id || 0}`);
+  }
+
   render() {
-    const blog = this.props.blog || null;
-    const rank = this.props.rank || 0;
+    const { blog, rank } = this.props;
     return (
       <Grid item xs={12}>
-        <ButtonBase className="btn-base">
+        <ButtonBase className="btn-base" onClick={this.handleClick}>
           <Badge badgeContent={rank} color="secondary" className="badge left">
             <Paper className="home-new-blog">
               <Typography variant="subtitle1" className="serif-2">
-                {'How to Eat the Best Fruit (and Not the Bad Fruit)'}
+                {blog.title || 'Blog Title'}
               </Typography>
               <Typography noWrap>
-                {'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos blanditiis tenetur unde suscipit, quam beatae rerum inventore consectetur, neque doloribus, cupiditate numquam dignissimos laborum fugiat deleniti? Eum quasi quidem quibusdam.'}
+                {blog.body || 'Blog body'}
               </Typography>
               <Typography variant="subtitle2">
-                Lebron James
+                {blog.author || 'Blog Author'}
               </Typography>
               <Typography variant="caption">
-                <Moment fromNow>{blog.postTime || 1545813100264}</Moment>
+                <Moment fromNow>{blog.created_at || 1545813100264}</Moment>
                 <span className="dot-divider" />
                 {blog.timeRead || `${10} min read`}
               </Typography>

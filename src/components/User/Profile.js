@@ -15,15 +15,22 @@ export default class Profile extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      user_id: localStorage.getItem('justblog_user_id') || 0,
+      user_id: localStorage.getItem('justblog_user_id') || null,
       blogs: [],
       user_info: {},
     };
   }
 
   componentDidMount() {
-    this.fetchUserInfo();
-    this.fetchUserBlogs();
+    const uid = localStorage.getItem('justblog_user_id') || null;
+    if (uid) {
+      this.setState({ user_id: uid }, () => {
+        this.fetchUserInfo();
+        setTimeout(() => {
+          this.fetchUserBlogs();
+        }, 500);
+      });
+    }
   }
 
   fetchUserInfo = () => {
@@ -31,7 +38,8 @@ export default class Profile extends Component {
     API.getUserInfo(user_id)
       .then((res) => {
         this.setState({ user_info: res.data });
-      });
+      })
+      .catch(err => console.log(err));
   }
 
   fetchUserBlogs = () => {
@@ -39,7 +47,8 @@ export default class Profile extends Component {
     API.getBlogsByUser(user_id)
       .then((res) => {
         this.setState({ blogs: res.data });
-      });
+      })
+      .catch(err => console.log(err));
   }
 
   handleDelete = (blog_id) => {

@@ -27,6 +27,12 @@ class _API {
     return result;
   }
 
+  async getTrendingBlogs() {
+    const res = await fetch(`${API_URL}/blogs/trending`);
+    const result = await res.json();
+    return result;
+  }
+
   async getBlogById(blog_id) {
     const res = await fetch(`${API_URL}/blogs/${blog_id}`);
     const result = await res.json();

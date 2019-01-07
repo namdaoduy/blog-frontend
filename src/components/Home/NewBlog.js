@@ -3,14 +3,16 @@ import { Typography, Grid, ButtonBase } from '@material-ui/core';
 import Paper from '@material-ui/core/Paper';
 import Moment from 'react-moment';
 import Space from '../Common/Space';
+import history from '../../utils/history';
 
 export default class NewBlog extends Component {
   handleClick = () => {
-    this.props.history.push(`/blog/${this.props.blog.id || 0}`);
+    const { blog } = this.props;
+    history.push(`/blog/${blog.id || 0}`);
   }
 
   render() {
-    const blog = this.props.blog || null;
+    const { blog } = this.props;
 
     return (
       <Grid item xs={12}>
