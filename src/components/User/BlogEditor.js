@@ -18,9 +18,10 @@ export default class BlogEditor extends Component {
     this.state = {
       id: (blog_id === 'new') ? null : blog_id,
       type: (blog_id === 'new') ? 'new' : 'edit',
-      title: 'Your title here',
+      title: '',
       body: 'Your body here',
       isLoading: true,
+      error: false,
     };
 
     this.converter = new Showdown.Converter({
@@ -34,7 +35,7 @@ export default class BlogEditor extends Component {
     if (type === 'new') {
       this.setState({
         isLoading: false,
-        title: 'Your title here',
+        title: '',
         body: 'Your body here',
       });
     } else {
@@ -68,15 +69,40 @@ export default class BlogEditor extends Component {
       });
   }
 
+  validateInput = () => {
+    const { title, body } = this.state;
+    if (title.length < 10 || title.length > 100 || body.length < 1000) {
+      this.setState({ error: true });
+      return false;
+    }
+    return true;
+  }
+
+  renderError = () => {
+    const { error } = this.state;
+    if (error) {
+      return (
+        <div>
+          Title must be between 10-100 characters.
+          Body must be at least 1000 characters
+        </div>
+      );
+    }
+    return null;
+  }
+
   onSubmit = () => {
+    if (!this.validateInput()) {
+      return false;
+    }
     const { id, title, body, type } = this.state;
     const data = { id, title, body };
-    console.log(data);
     if (type === 'edit') {
       this.handleEdit(data);
     } else if (type === 'new') {
       this.handleNew(data);
     }
+    return true;
   }
 
   fetchBlog = (id) => {
@@ -108,7 +134,7 @@ export default class BlogEditor extends Component {
   }
 
   render() {
-    const { title, body } = this.state;
+    const { title } = this.state;
     return (
       <MuiThemeProvider theme={theme}>
         <div className="user-container">
@@ -118,6 +144,7 @@ export default class BlogEditor extends Component {
               <TextField
                 onChange={this.handleTitleChange}
                 value={title}
+                placeholder="10 - 100 characters"
                 required
                 id="outlined-required"
                 label="Title"
@@ -132,6 +159,8 @@ export default class BlogEditor extends Component {
               >
                 Submit
               </Button>
+
+              {this.renderError()}
 
               {this.renderEditor()}
 
