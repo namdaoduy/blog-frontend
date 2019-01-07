@@ -54,6 +54,7 @@ export default class Header extends Component {
   }
 
   render() {
+    const { anchorUserMenu, isLogin, isUserMenuOpen } = this.state;
     return (
       <MuiThemeProvider theme={theme}>
         <AppBar className="header" position="sticky" color="secondary">
@@ -77,7 +78,7 @@ export default class Header extends Component {
                 </Badge>
               </IconButton>
               <IconButton
-                aria-owns={this.state.isUserMenuOpen ? 'user-popper' : undefined}
+                aria-owns={isUserMenuOpen ? 'user-popper' : undefined}
                 aria-haspopup="true"
                 onClick={this.handleOpenUserMenu}
                 color="inherit"
@@ -86,14 +87,14 @@ export default class Header extends Component {
               </IconButton>
               <Popover
                 id="user-popper"
-                open={!!this.state.anchorUserMenu}
-                anchorEl={this.state.anchorUserMenu}
+                open={!!anchorUserMenu}
+                anchorEl={anchorUserMenu}
                 onClose={this.handleCloseUserMenu}
                 anchorOrigin={{ vertical: 'bottom', horizontal: 'left' }}
                 transformOrigin={{ vertical: 'top', horizontal: 'left' }}
               >
                 {
-                  !this.state.isLogin
+                  !isLogin
                     ? <Button onClick={this.handleLogin}>Login</Button>
                     : (
                       <React.Fragment>

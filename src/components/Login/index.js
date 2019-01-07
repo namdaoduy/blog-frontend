@@ -8,16 +8,19 @@ import API from '../../services/apis';
 
 export default class Login extends Component {
   responseGoogle = (res) => {
-    console.log(res);
+    const { handleLogin } = this.props;
+
     if (res.error) {
       return alert('Login Failed');
     }
 
     API.postLogin(res)
       .then((res) => {
-        this.props.handleLogin(res);
+        handleLogin(res);
       })
       .catch(err => console.log(err));
+
+    return null;
   }
 
   render() {

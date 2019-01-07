@@ -72,8 +72,8 @@ export default class Profile extends Component {
 
   renderBlogs = () => {
     const { blogs } = this.state;
-    return blogs.slice(0).reverse().map((blog, i) => (
-      <Paper className="user-profile-blog">
+    return blogs.slice(0).reverse().map(blog => (
+      <Paper className="user-profile-blog" key={blog.id}>
         <Typography variant="h5" className="serif-2">
           {blog.title || 'Blog title'}
         </Typography>

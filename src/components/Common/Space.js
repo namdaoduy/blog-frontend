@@ -1,8 +1,8 @@
 import React from 'react';
 
-const Space = props => (
+const Space = ({ height }) => (
   <div style={{
-    height: props.height || 10,
+    height: height || 10,
     width: '100%',
     margin: 0,
   }}

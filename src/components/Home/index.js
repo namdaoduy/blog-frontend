@@ -26,9 +26,10 @@ export default class Home extends Component {
       return;
     }
     // CORS error when send both 2 request at once
-    // FIX LATER
+    // !!! FIX LATER
     // this.fetchNewBlogs();
     // this.fetchTrendingBlogs();
+    // TEMP: use setTimeout
     this.fetchNewBlogs();
     setTimeout(() => {
       this.fetchTrendingBlogs();
@@ -45,15 +46,15 @@ export default class Home extends Component {
 
   renderNewBlogs = () => {
     const { newBlogs } = this.state;
-    return newBlogs.map((blog, i) => (
-      <NewBlog blog={blog} key={i} />
+    return newBlogs.map(blog => (
+      <NewBlog blog={blog} key={blog.id} />
     ));
   }
 
   renderTrendingBlogs = () => {
     const { trendingBlogs } = this.state;
     return trendingBlogs.map((blog, i) => (
-      <TrendingBlog blog={blog} key={i} rank={i + 1} />
+      <TrendingBlog blog={blog} key={blog.id} rank={i + 1} />
     ));
   }
 
