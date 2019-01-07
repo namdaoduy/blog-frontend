@@ -57,7 +57,7 @@ export default class Profile extends Component {
     const token = localStorage.getItem('justblog_access_token');
     API.deleteBlogById(blog_id, token)
       .then(() => {
-        window.location.reload();
+        this.fetchUserBlogs();
       })
       .catch(err => console.log(err));
   }
