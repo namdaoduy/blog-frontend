@@ -28,7 +28,7 @@ export default class Profile extends Component {
         this.fetchUserInfo();
         setTimeout(() => {
           this.fetchUserBlogs();
-        }, 500);
+        }, 1000);
       });
     }
   }

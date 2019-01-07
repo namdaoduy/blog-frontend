@@ -55,6 +55,7 @@ export default class App extends Component {
       isLogin: localStorage.getItem('justblog_login_state') || false,
     };
     this.handleLogin = this.handleLogin.bind(this);
+    this.handleLogout = this.handleLogout.bind(this);
   }
 
   componentDidMount() {

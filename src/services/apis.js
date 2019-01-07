@@ -15,32 +15,51 @@ class _API {
 
   async getUserInfo(user_id) {
     const res = await fetch(`${API_URL}/users/${user_id}`, {
-      headers: { 'Content-Type': 'application/json' },
+      headers: {
+        'Access-Control-Allow-Origin': '*:*',
+        'Content-Type': 'application/json',
+      },
     });
     const result = await res.json();
     return result;
   }
 
   async getAllBlogs() {
-    const res = await fetch(`${API_URL}/blogs`);
+    const res = await fetch(`${API_URL}/blogs`, {
+      headers: {
+        'Access-Control-Allow-Origin': '*:*',
+        'Content-Type': 'application/json',
+      },
+    });
     const result = await res.json();
     return result;
   }
 
   async getTrendingBlogs() {
-    const res = await fetch(`${API_URL}/blogs/trending`);
+    const res = await fetch(`${API_URL}/blogs/trending`, {
+      headers: {
+        'Access-Control-Allow-Origin': '*:*',
+        'Content-Type': 'application/json',
+      },
+    });
     const result = await res.json();
     return result;
   }
 
   async getBlogById(blog_id) {
-    const res = await fetch(`${API_URL}/blogs/${blog_id}`);
+    const res = await fetch(`${API_URL}/blogs/${blog_id}`, {
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
     const result = await res.json();
     return result;
   }
 
   async getBlogsByUser(user_id) {
-    const res = await fetch(`${API_URL}/users/${user_id}/blogs`);
+    const res = await fetch(`${API_URL}/users/${user_id}/blogs`, {
+      headers: { 'Content-Type': 'application/json' },
+    });
     const result = await res.json();
     return result;
   }

@@ -14,8 +14,8 @@ export default class Home extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      newBlogs: [1, 2, 3],
-      trendingBlogs: [1, 2, 3],
+      newBlogs: [],
+      trendingBlogs: [],
     };
   }
 
@@ -25,8 +25,14 @@ export default class Home extends Component {
       handleLogout();
       return;
     }
+    // CORS error when send both 2 request at once
+    // FIX LATER
+    // this.fetchNewBlogs();
+    // this.fetchTrendingBlogs();
     this.fetchNewBlogs();
-    this.fetchTrendingBlogs();
+    setTimeout(() => {
+      this.fetchTrendingBlogs();
+    }, 1000);
   }
 
   handleWriteNow = () => {
@@ -37,13 +43,19 @@ export default class Home extends Component {
     history.push('/login');
   }
 
-  renderNewBlogs = () => this.state.newBlogs.map((blog, i) => (
-    <NewBlog blog={blog} key={i} />
-  ))
+  renderNewBlogs = () => {
+    const { newBlogs } = this.state;
+    return newBlogs.map((blog, i) => (
+      <NewBlog blog={blog} key={i} />
+    ));
+  }
 
-  renderTrendingBlogs = () => this.state.trendingBlogs.map((blog, i) => (
-    <TrendingBlog blog={blog} key={i} rank={i + 1} />
-  ))
+  renderTrendingBlogs = () => {
+    const { trendingBlogs } = this.state;
+    return trendingBlogs.map((blog, i) => (
+      <TrendingBlog blog={blog} key={i} rank={i + 1} />
+    ));
+  }
 
   fetchNewBlogs = () => {
     API.getAllBlogs()
