@@ -92,11 +92,15 @@ export default class Header extends Component {
                 anchorOrigin={{ vertical: 'bottom', horizontal: 'left' }}
                 transformOrigin={{ vertical: 'top', horizontal: 'left' }}
               >
-                <Button onClick={this.handleProfile}>Profile</Button>
                 {
                   !this.state.isLogin
                     ? <Button onClick={this.handleLogin}>Login</Button>
-                    : <Button onClick={this.handleLogout}>Log Out</Button>
+                    : (
+                      <React.Fragment>
+                        <Button onClick={this.handleProfile}>Profile</Button>
+                        <Button onClick={this.handleLogout}>Log Out</Button>
+                      </React.Fragment>
+                    )
                 }
               </Popover>
             </div>

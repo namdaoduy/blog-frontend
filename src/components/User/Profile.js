@@ -107,7 +107,8 @@ export default class Profile extends Component {
   }
 
   render() {
-    const { name, email, picture } = this.state.user_info;
+    const { user_info } = this.state;
+    const { name, email, picture } = user_info;
     return (
       <MuiThemeProvider theme={theme}>
         <div className="user-container">

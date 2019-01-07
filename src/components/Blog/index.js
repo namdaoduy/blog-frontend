@@ -13,7 +13,7 @@ import Header from '../Common/Header';
 import theme from '../../constants/theme';
 import API from '../../services/apis';
 
-export default class Home extends Component {
+export default class Blog extends Component {
   constructor(props) {
     super(props);
     const { match } = this.props;
@@ -82,7 +82,7 @@ export default class Home extends Component {
                     {blog.author || "Author's Name"}
                   </Typography>
                   <Typography variant="caption">
-                    <Moment fromNow>{blog.created_at || 1545813100264}</Moment>
+                    <Moment fromNow date={blog.created_at || 1545813100264} />
                     <span className="dot-divider" />
                     {`${blog.timeRead || 10} min read`}
                   </Typography>
