@@ -1,19 +1,18 @@
-import React, { Component } from 'react';
 import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
-import IconButton from '@material-ui/core/IconButton';
-import Typography from '@material-ui/core/Typography';
 import Badge from '@material-ui/core/Badge';
+import IconButton from '@material-ui/core/IconButton';
 import Popover from '@material-ui/core/Popover';
-import MenuIcon from '@material-ui/icons/Menu';
-import AccountCircle from '@material-ui/icons/AccountCircle';
-import NotificationsIcon from '@material-ui/icons/Notifications';
 import { MuiThemeProvider } from '@material-ui/core/styles';
-
+import Toolbar from '@material-ui/core/Toolbar';
+import Typography from '@material-ui/core/Typography';
+import AccountCircle from '@material-ui/icons/AccountCircle';
+import Button from '@material-ui/core/Button';
+import ButtonBase from '@material-ui/core/ButtonBase';
+import MenuIcon from '@material-ui/icons/Menu';
+import NotificationsIcon from '@material-ui/icons/Notifications';
+import React, { Component } from 'react';
 import '../../assets/styles/common-header.css';
-import { Button, ButtonBase } from '@material-ui/core';
 import theme from '../../constants/theme';
-
 import history from '../../utils/history';
 
 export default class Header extends Component {

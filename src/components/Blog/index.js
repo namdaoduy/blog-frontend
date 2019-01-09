@@ -1,17 +1,22 @@
-import React, { Component } from 'react';
-import '../../assets/styles/blog.css';
-import { Typography, Grid, IconButton, Tooltip } from '@material-ui/core';
+// Check when like
+
+import Avatar from '@material-ui/core/Avatar';
+import Grid from '@material-ui/core/Grid';
+import IconButton from '@material-ui/core/IconButton';
 import MuiThemeProvider from '@material-ui/core/styles/MuiThemeProvider';
 import Toolbar from '@material-ui/core/Toolbar';
-import Avatar from '@material-ui/core/Avatar';
-import FavoriteBorder from '@material-ui/icons/FavoriteBorder';
+import Tooltip from '@material-ui/core/Tooltip';
+import Typography from '@material-ui/core/Typography';
 import Favorite from '@material-ui/icons/Favorite';
+import FavoriteBorder from '@material-ui/icons/FavoriteBorder';
 import Share from '@material-ui/icons/Share';
+import React, { Component } from 'react';
 import Markdown from 'react-markdown';
 import Moment from 'react-moment';
-import Header from '../Common/Header';
+import '../../assets/styles/blog.css';
 import theme from '../../constants/theme';
 import API from '../../services/apis';
+import Header from '../Common/Header';
 
 export default class Blog extends Component {
   constructor(props) {

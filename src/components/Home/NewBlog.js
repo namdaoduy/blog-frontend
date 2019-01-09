@@ -1,9 +1,11 @@
-import React, { Component } from 'react';
-import { Typography, Grid, ButtonBase } from '@material-ui/core';
+import ButtonBase from '@material-ui/core/ButtonBase';
+import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
+import Typography from '@material-ui/core/Typography';
+import React, { Component } from 'react';
 import Moment from 'react-moment';
-import Space from '../Common/Space';
 import history from '../../utils/history';
+import Space from '../Common/Space';
 
 export default class NewBlog extends Component {
   handleClick = () => {

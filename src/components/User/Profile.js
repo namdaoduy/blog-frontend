@@ -1,15 +1,19 @@
-import React, { Component } from 'react';
-import { Typography, Button, Grid, Divider, Avatar } from '@material-ui/core';
+import Avatar from '@material-ui/core/Avatar';
+import Button from '@material-ui/core/Button';
+import Divider from '@material-ui/core/Divider';
+import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
-import DeleteForever from '@material-ui/icons/DeleteForever';
+import { MuiThemeProvider } from '@material-ui/core/styles';
+import Typography from '@material-ui/core/Typography';
 import BorderColor from '@material-ui/icons/BorderColor';
+import DeleteForever from '@material-ui/icons/DeleteForever';
+import React, { Component } from 'react';
 import Moment from 'react-moment';
 import '../../assets/styles/user.css';
-import { MuiThemeProvider } from '@material-ui/core/styles';
-import Header from '../Common/Header';
 import theme from '../../constants/theme';
 import API from '../../services/apis';
 import history from '../../utils/history';
+import Header from '../Common/Header';
 
 export default class Profile extends Component {
   constructor(props) {

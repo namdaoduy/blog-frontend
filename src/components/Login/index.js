@@ -1,8 +1,8 @@
-import React, { Component } from 'react';
-import '../../assets/styles/login.css';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
+import React, { Component } from 'react';
 import { GoogleLogin } from 'react-google-login';
+import '../../assets/styles/login.css';
 import configs from '../../configs';
 import API from '../../services/apis';
 

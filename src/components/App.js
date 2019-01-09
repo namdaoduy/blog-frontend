@@ -96,6 +96,7 @@ export default class App extends Component {
     const routesUser = [
       <Route exact path="/" component={Home} key="home" />,
       <Route path="/blog/:blog_id" component={Blog} key="blog" />,
+      // use blog_id for new??
       <Route path="/user/blog/:blog_id" component={BlogEditor} key="blogEditor" />,
       <Route path="/user" component={User} key="user" />,
       <Route

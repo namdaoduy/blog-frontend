@@ -1,14 +1,17 @@
+import Button from '@material-ui/core/Button';
+import Divider from '@material-ui/core/Divider';
+import Grid from '@material-ui/core/Grid';
+import Paper from '@material-ui/core/Paper';
+import { MuiThemeProvider } from '@material-ui/core/styles';
+import Typography from '@material-ui/core/Typography';
 import React, { Component } from 'react';
 import '../../assets/styles/home.css';
-import { Typography, Button, Grid, Divider } from '@material-ui/core';
-import { MuiThemeProvider } from '@material-ui/core/styles';
-import Paper from '@material-ui/core/Paper';
-import Header from '../Common/Header';
 import theme from '../../constants/theme';
-import NewBlog from './NewBlog';
-import TrendingBlog from './TrendingBlog';
 import API from '../../services/apis';
 import history from '../../utils/history';
+import Header from '../Common/Header';
+import NewBlog from './NewBlog';
+import TrendingBlog from './TrendingBlog';
 
 export default class Home extends Component {
   constructor(props) {
