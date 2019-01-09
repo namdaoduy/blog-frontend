@@ -1,5 +1,4 @@
 import Button from '@material-ui/core/Button';
-import { MuiThemeProvider } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import 'draft-js/dist/Draft.css';
 import React, { Component } from 'react';
@@ -7,7 +6,6 @@ import ReactMde from 'react-mde';
 import 'react-mde/lib/styles/css/react-mde-all.css';
 import * as Showdown from 'showdown';
 import '../../assets/styles/user.css';
-import theme from '../../constants/theme';
 import API from '../../services/apis';
 import history from '../../utils/history';
 import Header from '../Common/Header';
@@ -139,38 +137,36 @@ export default class BlogEditor extends Component {
   render() {
     const { title } = this.state;
     return (
-      <MuiThemeProvider theme={theme}>
-        <div className="user-container">
-          <Header />
-          <div className="user-inner">
-            <div className="editor-container">
-              <TextField
-                onChange={this.handleTitleChange}
-                value={title}
-                placeholder="10 - 100 characters"
-                required
-                id="outlined-required"
-                label="Title"
-                margin="normal"
-                variant="outlined"
-              />
+      <div className="user-container">
+        <Header />
+        <div className="user-inner">
+          <div className="editor-container">
+            <TextField
+              onChange={this.handleTitleChange}
+              value={title}
+              placeholder="10 - 100 characters"
+              required
+              id="outlined-required"
+              label="Title"
+              margin="normal"
+              variant="outlined"
+            />
 
-              <Button
-                variant="contained"
-                color="secondary"
-                onClick={this.onSubmit}
-              >
-                Submit
-              </Button>
+            <Button
+              variant="contained"
+              color="secondary"
+              onClick={this.onSubmit}
+            >
+              Submit
+            </Button>
 
-              {this.renderError()}
+            {this.renderError()}
 
-              {this.renderEditor()}
+            {this.renderEditor()}
 
-            </div>
           </div>
         </div>
-      </MuiThemeProvider>
+      </div>
     );
   }
 }

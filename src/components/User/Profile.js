@@ -3,14 +3,12 @@ import Button from '@material-ui/core/Button';
 import Divider from '@material-ui/core/Divider';
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
-import { MuiThemeProvider } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import BorderColor from '@material-ui/icons/BorderColor';
 import DeleteForever from '@material-ui/icons/DeleteForever';
 import React, { Component } from 'react';
 import Moment from 'react-moment';
 import '../../assets/styles/user.css';
-import theme from '../../constants/theme';
 import API from '../../services/apis';
 import history from '../../utils/history';
 import Header from '../Common/Header';
@@ -114,41 +112,39 @@ export default class Profile extends Component {
     const { user_info } = this.state;
     const { name, email, picture } = user_info;
     return (
-      <MuiThemeProvider theme={theme}>
-        <div className="user-container">
-          <Header />
-          <Grid
-            className="user-inner"
-            container
-            spacing={24}
-          >
-            <Grid item xs={3}>
-              <Avatar alt="User Avatar" className="user-avatar" src={picture || null} />
-              <Typography variant="h5" className="bold">
-                {name || 'User Name'}
-              </Typography>
-              <Typography variant="subtitle1">
-                {email || 'useremail@gmail.com'}
-              </Typography>
-              <Button
-                variant="contained"
-                color="secondary"
-                onClick={this.handleClickNew}
-              >
-                New Blog
-              </Button>
-            </Grid>
-
-            <Grid item xs={9}>
-              <Typography variant="h5" className="semi-bold serif-2" gutterBottom>
-                Your Blogs
-              </Typography>
-              <Divider />
-              {this.renderBlogs()}
-            </Grid>
+      <div className="user-container">
+        <Header />
+        <Grid
+          className="user-inner"
+          container
+          spacing={24}
+        >
+          <Grid item xs={3}>
+            <Avatar alt="User Avatar" className="user-avatar" src={picture || null} />
+            <Typography variant="h5" className="bold">
+              {name || 'User Name'}
+            </Typography>
+            <Typography variant="subtitle1">
+              {email || 'useremail@gmail.com'}
+            </Typography>
+            <Button
+              variant="contained"
+              color="secondary"
+              onClick={this.handleClickNew}
+            >
+              New Blog
+            </Button>
           </Grid>
-        </div>
-      </MuiThemeProvider>
+
+          <Grid item xs={9}>
+            <Typography variant="h5" className="semi-bold serif-2" gutterBottom>
+              Your Blogs
+            </Typography>
+            <Divider />
+            {this.renderBlogs()}
+          </Grid>
+        </Grid>
+      </div>
     );
   }
 }

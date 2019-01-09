@@ -3,7 +3,6 @@
 import Avatar from '@material-ui/core/Avatar';
 import Grid from '@material-ui/core/Grid';
 import IconButton from '@material-ui/core/IconButton';
-import MuiThemeProvider from '@material-ui/core/styles/MuiThemeProvider';
 import Toolbar from '@material-ui/core/Toolbar';
 import Tooltip from '@material-ui/core/Tooltip';
 import Typography from '@material-ui/core/Typography';
@@ -14,7 +13,6 @@ import React, { Component } from 'react';
 import Markdown from 'react-markdown';
 import Moment from 'react-moment';
 import '../../assets/styles/blog.css';
-import theme from '../../constants/theme';
 import API from '../../services/apis';
 import Header from '../Common/Header';
 
@@ -67,57 +65,55 @@ export default class Blog extends Component {
   render() {
     const { blog, isLiked } = this.state;
     return (
-      <MuiThemeProvider theme={theme}>
-        <div className="blog-container">
-          <Header />
-          <Grid className="blog-inner" container spacing={24}>
-            <Grid item xs={12}>
-              <Typography variant="h3" className="serif-2">
-                {blog.title || 'Blog title'}
-              </Typography>
+      <div className="blog-container">
+        <Header />
+        <Grid className="blog-inner" container spacing={24}>
+          <Grid item xs={12}>
+            <Typography variant="h3" className="serif-2">
+              {blog.title || 'Blog title'}
+            </Typography>
 
-              <div className="blog-info">
-                <Avatar
-                  className="author-avatar"
-                  alt="Author Avatar"
-                  src={blog.picture}
-                />
-                <div className="blog-info-text">
-                  <Typography variant="subtitle2">
-                    {blog.author || "Author's Name"}
-                  </Typography>
-                  <Typography variant="caption">
-                    <Moment fromNow date={blog.created_at || 1545813100264} />
-                    <span className="dot-divider" />
-                    {`${blog.timeRead || 10} min read`}
-                  </Typography>
-                </div>
+            <div className="blog-info">
+              <Avatar
+                className="author-avatar"
+                alt="Author Avatar"
+                src={blog.picture}
+              />
+              <div className="blog-info-text">
+                <Typography variant="subtitle2">
+                  {blog.author || "Author's Name"}
+                </Typography>
+                <Typography variant="caption">
+                  <Moment fromNow date={blog.created_at || 1545813100264} />
+                  <span className="dot-divider" />
+                  {`${blog.timeRead || 10} min read`}
+                </Typography>
               </div>
+            </div>
 
-              <div className="blog-content">
-                <div className="blog-content-left">
-                  <Toolbar className="blog-btn-list">
-                    <Tooltip title={blog.like} placement="left">
-                      <IconButton
-                        color="secondary"
-                        onClick={this.onLike}
-                      >
-                        {isLiked ? <Favorite /> : <FavoriteBorder />}
-                      </IconButton>
-                    </Tooltip>
-                    <IconButton color="secondary">
-                      <Share />
+            <div className="blog-content">
+              <div className="blog-content-left">
+                <Toolbar className="blog-btn-list">
+                  <Tooltip title={blog.like} placement="left">
+                    <IconButton
+                      color="secondary"
+                      onClick={this.onLike}
+                    >
+                      {isLiked ? <Favorite /> : <FavoriteBorder />}
                     </IconButton>
-                  </Toolbar>
-                </div>
-                <div className="blog-content-right">
-                  <Markdown source={blog.body} className="blog-markdown" />
-                </div>
+                  </Tooltip>
+                  <IconButton color="secondary">
+                    <Share />
+                  </IconButton>
+                </Toolbar>
               </div>
-            </Grid>
+              <div className="blog-content-right">
+                <Markdown source={blog.body} className="blog-markdown" />
+              </div>
+            </div>
           </Grid>
-        </div>
-      </MuiThemeProvider>
+        </Grid>
+      </div>
     );
   }
 }

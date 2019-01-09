@@ -2,7 +2,6 @@ import AppBar from '@material-ui/core/AppBar';
 import Badge from '@material-ui/core/Badge';
 import IconButton from '@material-ui/core/IconButton';
 import Popover from '@material-ui/core/Popover';
-import { MuiThemeProvider } from '@material-ui/core/styles';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import AccountCircle from '@material-ui/icons/AccountCircle';
@@ -12,7 +11,6 @@ import MenuIcon from '@material-ui/icons/Menu';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import React, { Component } from 'react';
 import '../../assets/styles/common-header.css';
-import theme from '../../constants/theme';
 import history from '../../utils/history';
 
 export default class Header extends Component {
@@ -55,59 +53,56 @@ export default class Header extends Component {
   render() {
     const { anchorUserMenu, isLogin, isUserMenuOpen } = this.state;
     return (
-      <MuiThemeProvider theme={theme}>
-        <AppBar className="header" position="sticky" color="secondary">
-          <Toolbar>
-            <div className="header-left">
-              <IconButton className="header-menu-btn" color="inherit" aria-label="Open drawer">
-                <MenuIcon />
-              </IconButton>
-            </div>
-            <div className="header-center">
-              <ButtonBase onClick={this.handleHome}>
-                <Typography className="header-title serif" variant="h4" color="inherit" noWrap>
-                  Just Blog
-                </Typography>
-              </ButtonBase>
-            </div>
-            <div className="header-right">
-              <IconButton color="inherit">
-                <Badge badgeContent={17} color="primary">
-                  <NotificationsIcon />
-                </Badge>
-              </IconButton>
-              <IconButton
-                aria-owns={isUserMenuOpen ? 'user-popper' : undefined}
-                aria-haspopup="true"
-                onClick={this.handleOpenUserMenu}
-                color="inherit"
-              >
-                <AccountCircle />
-              </IconButton>
-              <Popover
-                id="user-popper"
-                open={!!anchorUserMenu}
-                anchorEl={anchorUserMenu}
-                onClose={this.handleCloseUserMenu}
-                anchorOrigin={{ vertical: 'bottom', horizontal: 'left' }}
-                transformOrigin={{ vertical: 'top', horizontal: 'left' }}
-              >
-                {
-                  !isLogin
-                    ? <Button onClick={this.handleLogin}>Login</Button>
-                    : (
-                      <React.Fragment>
-                        <Button onClick={this.handleProfile}>Profile</Button>
-                        <Button onClick={this.handleLogout}>Log Out</Button>
-                      </React.Fragment>
-                    )
-                }
-              </Popover>
-            </div>
-          </Toolbar>
-        </AppBar>
-      </MuiThemeProvider>
-
+      <AppBar className="header" position="sticky" color="secondary">
+        <Toolbar>
+          <div className="header-left">
+            <IconButton className="header-menu-btn" color="inherit" aria-label="Open drawer">
+              <MenuIcon />
+            </IconButton>
+          </div>
+          <div className="header-center">
+            <ButtonBase onClick={this.handleHome}>
+              <Typography className="header-title serif" variant="h4" color="inherit" noWrap>
+                Just Blog
+              </Typography>
+            </ButtonBase>
+          </div>
+          <div className="header-right">
+            <IconButton color="inherit">
+              <Badge badgeContent={17} color="primary">
+                <NotificationsIcon />
+              </Badge>
+            </IconButton>
+            <IconButton
+              aria-owns={isUserMenuOpen ? 'user-popper' : undefined}
+              aria-haspopup="true"
+              onClick={this.handleOpenUserMenu}
+              color="inherit"
+            >
+              <AccountCircle />
+            </IconButton>
+            <Popover
+              id="user-popper"
+              open={!!anchorUserMenu}
+              anchorEl={anchorUserMenu}
+              onClose={this.handleCloseUserMenu}
+              anchorOrigin={{ vertical: 'bottom', horizontal: 'left' }}
+              transformOrigin={{ vertical: 'top', horizontal: 'left' }}
+            >
+              {
+                !isLogin
+                  ? <Button onClick={this.handleLogin}>Login</Button>
+                  : (
+                    <React.Fragment>
+                      <Button onClick={this.handleProfile}>Profile</Button>
+                      <Button onClick={this.handleLogout}>Log Out</Button>
+                    </React.Fragment>
+                  )
+              }
+            </Popover>
+          </div>
+        </Toolbar>
+      </AppBar>
     );
   }
 }
