@@ -4,6 +4,7 @@ import { Typography, Button, Grid, Divider } from '@material-ui/core';
 import { MuiThemeProvider } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Header from '../Common/Header';
+import Footer from '../Common/Footer';
 import theme from '../../constants/theme';
 import NewBlog from './NewBlog';
 import TrendingBlog from './TrendingBlog';
@@ -140,6 +141,8 @@ export default class Home extends Component {
             </Grid>
 
           </Grid>
+
+          <Footer />
         </div>
       </MuiThemeProvider>
     );
