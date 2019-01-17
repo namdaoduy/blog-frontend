@@ -55,11 +55,7 @@ export default class Header extends Component {
     return (
       <AppBar className="header" position="sticky" color="secondary">
         <Toolbar>
-          <div className="header-left">
-            <IconButton className="header-menu-btn" color="inherit" aria-label="Open drawer">
-              <MenuIcon />
-            </IconButton>
-          </div>
+          <div className="header-left" />
           <div className="header-center">
             <ButtonBase onClick={this.handleHome}>
               <Typography className="header-title serif" variant="h4" color="inherit" noWrap>
@@ -68,11 +64,6 @@ export default class Header extends Component {
             </ButtonBase>
           </div>
           <div className="header-right">
-            <IconButton color="inherit">
-              <Badge badgeContent={17} color="primary">
-                <NotificationsIcon />
-              </Badge>
-            </IconButton>
             <IconButton
               aria-owns={isUserMenuOpen ? 'user-popper' : undefined}
               aria-haspopup="true"

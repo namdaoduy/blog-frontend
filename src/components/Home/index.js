@@ -56,7 +56,6 @@ export default class Home extends Component {
     API.getAllBlogs()
       .then((res) => {
         if (!res.success) return;
-        console.log(res);
         this.setState({ newBlogs: res.data });
       })
       .catch(err => console.log(err));
