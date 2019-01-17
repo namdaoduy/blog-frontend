@@ -94,7 +94,7 @@ export default class Blog extends Component {
             <div className="blog-content">
               <div className="blog-content-left">
                 <Toolbar className="blog-btn-list">
-                  <Tooltip title={blog.like} placement="left">
+                  <Tooltip title={blog.like || 0} placement="left">
                     <IconButton
                       color="secondary"
                       onClick={this.onLike}

@@ -28,9 +28,7 @@ export default class Profile extends Component {
     if (uid) {
       this.setState({ user_id: uid }, () => {
         this.fetchUserInfo();
-        setTimeout(() => {
-          this.fetchUserBlogs();
-        }, 1000);
+        this.fetchUserBlogs();
       });
     }
   }

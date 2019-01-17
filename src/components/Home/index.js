@@ -26,15 +26,8 @@ export default class Home extends Component {
       handleLogout();
       return;
     }
-    // CORS error when send both 2 request at once
-    // !!! FIX LATER
-    // this.fetchNewBlogs();
-    // this.fetchTrendingBlogs();
-    // TEMP: use setTimeout
     this.fetchNewBlogs();
-    setTimeout(() => {
-      this.fetchTrendingBlogs();
-    }, 1000);
+    this.fetchTrendingBlogs();
   }
 
   handleWriteNow = () => {
@@ -63,6 +56,7 @@ export default class Home extends Component {
     API.getAllBlogs()
       .then((res) => {
         if (!res.success) return;
+        console.log(res);
         this.setState({ newBlogs: res.data });
       })
       .catch(err => console.log(err));
