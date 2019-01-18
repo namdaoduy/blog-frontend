@@ -45,7 +45,7 @@ export default class Blog extends Component {
   fetchLike = () => {
     const { id } = this.state;
     const token = localStorage.getItem('justblog_access_token');
-    API.getLikeBlog(id, token)
+    API.postLikeBlog(id, token)
       .then((res) => {
         if (!res.success) return;
         console.log(res);

@@ -107,13 +107,13 @@ class _API {
     return result;
   }
 
-  async getLikeBlog(blog_id, token) {
+  async postLikeBlog(blog_id, token) {
     const res = await fetch(`${API_URL}/blogs/${blog_id}/like`, {
       headers: {
         'Content-Type': 'application/json',
         Authorization: `Bearer ${token}`,
       },
-      method: 'GET',
+      method: 'POST',
     });
     const result = await res.json();
     return result;
