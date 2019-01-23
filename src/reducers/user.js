@@ -45,6 +45,10 @@ export default (state = INITIAL_STATE, action) => {
       };
     }
 
+    case UserAction.DELETE_BLOG_SUCCESS: {
+      return state;
+    }
+
     default:
       break;
   }

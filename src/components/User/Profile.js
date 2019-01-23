@@ -7,14 +7,13 @@ import Typography from '@material-ui/core/Typography';
 import BorderColor from '@material-ui/icons/BorderColor';
 import DeleteForever from '@material-ui/icons/DeleteForever';
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
 import Moment from 'react-moment';
+import { connect } from 'react-redux';
+import { deleteBlog, getUserBlogs, getUserInfo } from '../../actions/user';
 import '../../assets/styles/user.css';
-import API from '../../services/apis';
+import Auth from '../../utils/auth';
 import history from '../../utils/history';
 import Header from '../Common/Header';
-import Auth from '../../utils/auth';
-import { getUserInfo, getUserBlogs } from '../../actions/user';
 
 class Profile extends Component {
   constructor(props) {
@@ -49,12 +48,12 @@ class Profile extends Component {
       .catch(err => console.log(err));
   }
 
-  handleDelete = (blog_id) => {
+  handleDelete = (blogId) => {
     const del = window.confirm('Are you sure to delete?');
     if (!del) return;
-    const token = localStorage.getItem('justblog_access_token');
-    API.deleteBlogById(blog_id, token)
-      .then(() => {
+    this.props.deleteBlog(blogId)
+      .then((res) => {
+        console.log(res.success);
         this.fetchUserBlogs();
       })
       .catch(err => console.log(err));
@@ -153,6 +152,7 @@ const mapStateToProps = ({ user }) => ({
 const mapDispatchToProps = {
   getUserInfo,
   getUserBlogs,
+  deleteBlog,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Profile);

@@ -28,3 +28,10 @@ export function getUserBlogs(userId) {
     promise: get(`/users/${userId}/blogs`),
   };
 }
+
+export function deleteBlog(blogId) {
+  return {
+    type: UserAction.DELETE_BLOG,
+    promise: del(`/blogs/${blogId}`),
+  };
+}
