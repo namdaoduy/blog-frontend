@@ -6,5 +6,25 @@ const INITIAL_STATE = {
 };
 
 export default (state = INITIAL_STATE, action) => {
-  // reducer go here
+  const UNAUTHORIZED_CODE = 40100;
+  console.log(action);
+  if (action && action.payload && action.payload.data && action.payload.data.errorCode === UNAUTHORIZED_CODE) {
+    Auth.logout();
+    return { ...INITIAL_STATE, loggedIn: false };
+  }
+
+  switch (action.type) {
+    case UserAction.LOGIN: {
+      const newState = {
+        ...state,
+      };
+
+      return newState;
+    }
+
+    default:
+      break;
+  }
+
+  return state;
 };
