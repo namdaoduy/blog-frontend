@@ -15,8 +15,8 @@ export default class BlogEditor extends Component {
     super(props);
     const blog_id = props.match.params.blog_id;
     this.state = {
-      id: (blog_id === 'new') ? null : blog_id,
-      type: (blog_id === 'new') ? 'new' : 'edit',
+      id: blog_id || null,
+      type: blog_id ? 'edit' : 'new',
       title: '',
       body: 'Your body here',
       isLoading: true,
