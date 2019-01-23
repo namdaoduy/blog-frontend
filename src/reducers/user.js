@@ -4,6 +4,7 @@ import Auth from '../utils/auth';
 const INITIAL_STATE = {
   loggedIn: Auth.isAuth(),
   userInfo: {},
+  userBlogs: [],
 };
 
 export default (state = INITIAL_STATE, action) => {
@@ -34,6 +35,13 @@ export default (state = INITIAL_STATE, action) => {
       return {
         ...state,
         userInfo: action.payload.data,
+      };
+    }
+
+    case UserAction.GET_USER_BLOG_SUCCESS: {
+      return {
+        ...state,
+        userBlogs: action.payload.data,
       };
     }
 

@@ -21,3 +21,10 @@ export function getUserInfo(userId) {
     promise: get(`/users/${userId}`),
   };
 }
+
+export function getUserBlogs(userId) {
+  return {
+    type: UserAction.GET_USER_BLOG,
+    promise: get(`/users/${userId}/blogs`),
+  };
+}

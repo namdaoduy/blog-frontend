@@ -14,14 +14,13 @@ import API from '../../services/apis';
 import history from '../../utils/history';
 import Header from '../Common/Header';
 import Auth from '../../utils/auth';
-import { getUserInfo } from '../../actions/user';
+import { getUserInfo, getUserBlogs } from '../../actions/user';
 
 class Profile extends Component {
   constructor(props) {
     super(props);
     this.state = {
       userId: Auth.getUserId(),
-      blogs: [],
     };
   }
 
@@ -43,9 +42,9 @@ class Profile extends Component {
 
   fetchUserBlogs = () => {
     const { userId } = this.state;
-    API.getBlogsByUser(userId)
+    this.props.getUserBlogs(userId)
       .then((res) => {
-        this.setState({ blogs: res.data });
+        console.log(res.success);
       })
       .catch(err => console.log(err));
   }
@@ -70,8 +69,8 @@ class Profile extends Component {
   }
 
   renderBlogs = () => {
-    const { blogs } = this.state;
-    return blogs.slice(0).reverse().map(blog => (
+    const { userBlogs } = this.props || [];
+    return userBlogs.slice(0).reverse().map(blog => (
       <Paper className="user-profile-blog" key={blog.id}>
         <Typography variant="h5" className="serif-2">
           {blog.title || 'Blog title'}
@@ -148,10 +147,12 @@ class Profile extends Component {
 
 const mapStateToProps = ({ user }) => ({
   userInfo: user.userInfo,
+  userBlogs: user.userBlogs,
 });
 
 const mapDispatchToProps = {
   getUserInfo,
+  getUserBlogs,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Profile);
