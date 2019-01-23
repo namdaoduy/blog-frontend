@@ -16,7 +16,7 @@ import Moment from 'react-moment';
 import '../../assets/styles/blog.css';
 import API from '../../services/apis';
 import Header from '../Common/Header';
-import { getBlogById } from '../../actions/blog';
+import { getBlogById, likeBlog } from '../../actions/blog';
 
 class Blog extends Component {
   constructor(props) {
@@ -40,13 +40,8 @@ class Blog extends Component {
 
   fetchLike = () => {
     const { id } = this.state;
-    const token = localStorage.getItem('justblog_access_token');
-    API.postLikeBlog(id, token)
-      .then((res) => {
-        if (!res.success) return;
-        console.log(res);
-        this.setState({ isLiked: true });
-      })
+    this.props.likeBlog(id)
+      .then(res => console.log(res.success))
       .catch(err => console.log(err));
   }
 
@@ -125,6 +120,7 @@ const mapStateToProps = ({ blog, user }) => ({
 
 const mapDispatchToProps = {
   getBlogById,
+  likeBlog,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Blog);

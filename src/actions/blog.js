@@ -6,4 +6,11 @@ export function getBlogById(blogId) {
     type: BlogAction.GET_BLOG_BY_ID,
     promise: get(`/blogs/${blogId}`),
   };
-};
+}
+
+export function likeBlog(blogId) {
+  return {
+    type: BlogAction.LIKE_BLOG,
+    promise: post(`/likes/${blogId}`),
+  };
+}

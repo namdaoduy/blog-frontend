@@ -15,6 +15,13 @@ export default (state = INITIAL_STATE, action) => {
       };
     }
 
+    case BlogAction.LIKE_BLOG_SUCCESS: {
+      return {
+        ...state,
+        isLiked: true,
+      };
+    }
+
     default:
       break;
   }
