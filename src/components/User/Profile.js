@@ -60,7 +60,7 @@ class Profile extends Component {
   }
 
   handleClickEdit = (id) => {
-    history.push(`/user/blog/${id}`);
+    history.push(`/user/blog/${id}/edit`);
   }
 
   handleClickNew = () => {

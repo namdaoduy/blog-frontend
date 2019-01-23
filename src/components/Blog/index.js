@@ -1,5 +1,3 @@
-// Check when like
-
 import Avatar from '@material-ui/core/Avatar';
 import Grid from '@material-ui/core/Grid';
 import IconButton from '@material-ui/core/IconButton';
@@ -14,7 +12,6 @@ import { connect } from 'react-redux';
 import Markdown from 'react-markdown';
 import Moment from 'react-moment';
 import '../../assets/styles/blog.css';
-import API from '../../services/apis';
 import Header from '../Common/Header';
 import { getBlogById, likeBlog } from '../../actions/blog';
 
