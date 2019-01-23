@@ -60,11 +60,6 @@ class App extends Component {
       <Route exact path="/" component={Home} key="home" />,
       <Route path="/login" component={Login} key="login" />,
       <Route path="/blog/:blog_id" component={Blog} key="blog" />,
-      <Route
-        path="/logout"
-        render={props => <Home {...props} logout handleLogout={this.handleLogout} />}
-        key="logout"
-      />,
       <Redirect to="/" key="redirect" />,
     ];
 
@@ -74,11 +69,6 @@ class App extends Component {
       // use blog_id for new??
       <Route path="/user/blog/:blog_id" component={BlogEditor} key="blogEditor" />,
       <Route path="/user" component={User} key="user" />,
-      <Route
-        path="/logout"
-        render={props => <Home {...props} logout handleLogout={this.handleLogout} />}
-        key="logout"
-      />,
       <Redirect to="/" key="redirect" />,
     ];
 

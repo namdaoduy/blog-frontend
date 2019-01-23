@@ -2,6 +2,8 @@ export const UserAction = {
   LOGIN_GOOGLE: 'LOGIN_GOOGLE',
   LOGIN_GOOGLE_SUCCESS: 'LOGIN_GOOGLE_SUCCESS',
   LOGIN_GOOGLE_FAILURE: 'LOGIN_GOOGLE_FAILURE',
+
+  LOGOUT: 'LOGOUT',
 };
 
 export const AppAction = {

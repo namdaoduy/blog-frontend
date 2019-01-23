@@ -24,6 +24,15 @@ export default (state = INITIAL_STATE, action) => {
       return newState;
     }
 
+    case UserAction.LOGOUT: {
+      Auth.logout();
+
+      return {
+        ...state,
+        loggedIn: false,
+      };
+    }
+
     default:
       break;
   }

@@ -8,6 +8,7 @@ import Button from '@material-ui/core/Button';
 import ButtonBase from '@material-ui/core/ButtonBase';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { logout } from '../../actions/user';
 import '../../assets/styles/common-header.css';
 import history from '../../utils/history';
 
@@ -40,7 +41,8 @@ class Header extends Component {
   }
 
   handleLogout = () => {
-    history.push('/logout');
+    this.props.logout();
+    window.location.reload();
   }
 
   handleHome = () => {
@@ -99,4 +101,8 @@ const mapStateToProps = ({ user }) => ({
   loggedIn: user.loggedIn,
 });
 
-export default connect(mapStateToProps, null)(Header);
+const mapDispatchToProps = {
+  logout,
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Header);

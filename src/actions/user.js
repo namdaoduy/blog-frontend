@@ -9,5 +9,8 @@ export function loginGoogle(data) {
 }
 
 export function logout() {
-
+  return {
+    type: UserAction.LOGOUT,
+    payload: true,
+  };
 }
