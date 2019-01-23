@@ -1,26 +1,34 @@
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
+import { connect } from 'react-redux';
 import React, { Component } from 'react';
 import { GoogleLogin } from 'react-google-login';
 import '../../assets/styles/login.css';
 import configs from '../../configs';
 import API from '../../services/apis';
+import { loginGoogle } from '../../actions/user';
+import history from '../../utils/history';
 
-export default class Login extends Component {
+class Login extends Component {
   responseGoogle = (res) => {
-    const { handleLogin } = this.props;
-
     if (res.error) {
-      return alert('Login Failed');
+      alert('Login Failed');
     }
 
-    API.postLogin(res)
+    this.props.loginGoogle(res)
       .then((res) => {
-        handleLogin(res);
-      })
-      .catch(err => console.log(err));
+        this.handleLogin(res);
+      });
 
     return null;
+  }
+
+  handleLogin(res) {
+    if (res.success === true) {
+      history.push('/user');
+    } else {
+      alert('Login Failed');
+    }
   }
 
   render() {
@@ -48,3 +56,8 @@ export default class Login extends Component {
     );
   }
 }
+
+const mapStateToProps = null;
+const mapDispatchToProps = { loginGoogle };
+
+export default connect(mapStateToProps, mapDispatchToProps)(Login);

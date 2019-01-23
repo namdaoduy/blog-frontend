@@ -1,9 +1,9 @@
 import { UserAction } from '../constants/action';
 import { get, post, put, del } from '../utils/request';
 
-export function login(data) {
+export function loginGoogle(data) {
   return {
-    type: UserAction.LOGIN,
+    type: UserAction.LOGIN_GOOGLE,
     promise: post('/login', data),
   };
 }

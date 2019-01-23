@@ -1,5 +1,7 @@
 export const UserAction = {
-  LOGIN: 'LOGIN',
+  LOGIN_GOOGLE: 'LOGIN_GOOGLE',
+  LOGIN_GOOGLE_SUCCESS: 'LOGIN_GOOGLE_SUCCESS',
+  LOGIN_GOOGLE_FAILURE: 'LOGIN_GOOGLE_FAILURE',
 };
 
 export const AppAction = {

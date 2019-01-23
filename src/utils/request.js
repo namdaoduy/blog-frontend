@@ -62,7 +62,8 @@ const request = async (url, method, body, customHeaders = {}) => {
   let data = null;
   if (body) {
     if (headers['Content-Type'] === 'application/json') {
-      data = JSON.stringify(CaseConverter.camelCaseToSnakeCase(body));
+      // data = JSON.stringify(CaseConverter.camelCaseToSnakeCase(body));
+      data = JSON.stringify(body);
     } else {
       delete headers['Content-Type'];
       data = body;
@@ -78,6 +79,8 @@ const request = async (url, method, body, customHeaders = {}) => {
   if (method !== 'HEAD' && method !== 'GET') {
     fetchOpts.body = data;
   }
+
+  console.log(fetchOpts);
 
   const start = Date.now();
   const response = await fetch(endpoint, fetchOpts);

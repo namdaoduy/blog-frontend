@@ -2,6 +2,7 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import { createGenerateClassName, jssPreset, MuiThemeProvider } from '@material-ui/core/styles';
 import { create } from 'jss';
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import JssProvider from 'react-jss/lib/JssProvider';
 import Loadable from 'react-loadable';
 import { Redirect, Route, Router, Switch } from 'react-router-dom';
@@ -48,42 +49,16 @@ const BlogEditor = Loadable({
   loading: LoadingComponent('BlogEditor'),
 });
 
-export default class App extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      isLogin: localStorage.getItem('justblog_login_state') || false,
-    };
-    this.handleLogin = this.handleLogin.bind(this);
-    this.handleLogout = this.handleLogout.bind(this);
-  }
+class App extends Component {
 
   componentDidMount() {
     this.preloadChunks();
   }
 
-  componentDidUpdate() {
-    this.checkLogin();
-  }
-
-  checkLogin() {
-    const loginState = localStorage.getItem('justblog_login_state');
-    const { isLogin } = this.state;
-    if (isLogin === loginState) return;
-    this.setState({
-      isLogin: loginState,
-    });
-  }
-
   renderRoutes() {
-    const { isLogin } = this.state;
     const routes = [
       <Route exact path="/" component={Home} key="home" />,
-      <Route
-        path="/login"
-        render={props => <Login {...props} handleLogin={this.handleLogin} />}
-        key="login"
-      />,
+      <Route path="/login" component={Login} key="login" />,
       <Route path="/blog/:blog_id" component={Blog} key="blog" />,
       <Route
         path="/logout"
@@ -107,7 +82,7 @@ export default class App extends Component {
       <Redirect to="/" key="redirect" />,
     ];
 
-    if (!isLogin) {
+    if (!this.props.loggedIn) {
       return routes;
     }
 
@@ -122,24 +97,6 @@ export default class App extends Component {
         })
         .catch(console.error);
     }, 3000);
-  }
-
-  handleLogin = (res) => {
-    this.setState({ isLogin: true }, async () => {
-      localStorage.setItem('justblog_access_token', res.data.access_token);
-      localStorage.setItem('justblog_user_id', res.data.user_id);
-      localStorage.setItem('justblog_login_state', 1);
-      history.push('/user');
-    });
-  }
-
-  handleLogout = () => {
-    this.setState({ isLogin: false }, async () => {
-      localStorage.removeItem('justblog_access_token');
-      localStorage.removeItem('justblog_user_id');
-      localStorage.removeItem('justblog_login_state');
-      history.push('/');
-    });
   }
 
   render() {
@@ -157,3 +114,11 @@ export default class App extends Component {
     );
   }
 }
+
+const mapStateToProps = ({ user }) => ({
+  loggedIn: user.loggedIn,
+});
+
+const mapDispatchToProps = null;
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);

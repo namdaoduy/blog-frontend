@@ -7,15 +7,15 @@ import AccountCircle from '@material-ui/icons/AccountCircle';
 import Button from '@material-ui/core/Button';
 import ButtonBase from '@material-ui/core/ButtonBase';
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import '../../assets/styles/common-header.css';
 import history from '../../utils/history';
 
-export default class Header extends Component {
+class Header extends Component {
   constructor(props) {
     super(props);
     this.state = {
       anchorUserMenu: null,
-      isLogin: localStorage.getItem('justblog_login_state') || false,
     };
   }
 
@@ -48,7 +48,7 @@ export default class Header extends Component {
   }
 
   render() {
-    const { anchorUserMenu, isLogin, isUserMenuOpen } = this.state;
+    const { anchorUserMenu, isUserMenuOpen } = this.state;
     return (
       <AppBar className="header" position="sticky" color="secondary">
         <Toolbar>
@@ -78,7 +78,7 @@ export default class Header extends Component {
               transformOrigin={{ vertical: 'top', horizontal: 'left' }}
             >
               {
-                !isLogin
+                !this.props.loggedIn
                   ? <Button onClick={this.handleLogin}>Login</Button>
                   : (
                     <React.Fragment>
@@ -94,3 +94,9 @@ export default class Header extends Component {
     );
   }
 }
+
+const mapStateToProps = ({ user }) => ({
+  loggedIn: user.loggedIn,
+});
+
+export default connect(mapStateToProps, null)(Header);
