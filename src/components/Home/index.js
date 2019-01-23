@@ -4,22 +4,15 @@ import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import '../../assets/styles/home.css';
-import API from '../../services/apis';
 import history from '../../utils/history';
 import Header from '../Common/Header';
 import NewBlog from './NewBlog';
 import TrendingBlog from './TrendingBlog';
+import { getAllBlogs, getTrendingBlogs } from '../../actions/app';
 
-export default class Home extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      newBlogs: [],
-      trendingBlogs: [],
-    };
-  }
-
+class Home extends Component {
   componentDidMount() {
     this.fetchNewBlogs();
     this.fetchTrendingBlogs();
@@ -34,34 +27,28 @@ export default class Home extends Component {
   }
 
   renderNewBlogs = () => {
-    const { newBlogs } = this.state;
+    const { newBlogs } = this.props;
     return newBlogs.map(blog => (
       <NewBlog blog={blog} key={blog.id} />
     ));
   }
 
   renderTrendingBlogs = () => {
-    const { trendingBlogs } = this.state;
+    const { trendingBlogs } = this.props;
     return trendingBlogs.map((blog, i) => (
       <TrendingBlog blog={blog} key={blog.id} rank={i + 1} />
     ));
   }
 
   fetchNewBlogs = () => {
-    API.getAllBlogs()
-      .then((res) => {
-        if (!res.success) return;
-        this.setState({ newBlogs: res.data });
-      })
+    this.props.getAllBlogs()
+      .then(res => console.log(res.success))
       .catch(err => console.log(err));
   }
 
   fetchTrendingBlogs = () => {
-    API.getTrendingBlogs()
-      .then((res) => {
-        if (!res.success) return;
-        this.setState({ trendingBlogs: res.data });
-      })
+    this.props.getTrendingBlogs()
+      .then(res => console.log(res.success))
       .catch(err => console.log(err));
   }
 
@@ -132,3 +119,15 @@ export default class Home extends Component {
     );
   }
 }
+
+const mapStateToProps = ({ app }) => ({
+  newBlogs: app.allBlogs,
+  trendingBlogs: app.trendingBlogs,
+});
+
+const mapDispatchToProps = {
+  getAllBlogs,
+  getTrendingBlogs,
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Home);
