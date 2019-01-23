@@ -1,5 +1,5 @@
 import { UserAction } from '../constants/action';
-import { get, post, del } from '../utils/request';
+import { get, post, put, del } from '../utils/request';
 
 export function loginGoogle(data) {
   return {
@@ -33,5 +33,26 @@ export function deleteBlog(blogId) {
   return {
     type: UserAction.DELETE_BLOG,
     promise: del(`/blogs/${blogId}`),
+  };
+}
+
+export function createBlog(data) {
+  return {
+    type: UserAction.CREATE_BLOG,
+    promise: post('/blogs', data),
+  };
+}
+
+export function updateBlog(data) {
+  return {
+    type: UserAction.UPDATE_BLOG,
+    promise: put(`/blogs/${data.id}`, data),
+  };
+}
+
+export function getEdittingBlog(blogId) {
+  return {
+    type: UserAction.GET_EDITTING_BLOG,
+    promise: get(`/blogs/${blogId}`),
   };
 }

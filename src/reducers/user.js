@@ -5,6 +5,7 @@ const INITIAL_STATE = {
   loggedIn: Auth.isAuth(),
   userInfo: {},
   userBlogs: [],
+  edittingBlog: {},
 };
 
 export default (state = INITIAL_STATE, action) => {
@@ -47,6 +48,21 @@ export default (state = INITIAL_STATE, action) => {
 
     case UserAction.DELETE_BLOG_SUCCESS: {
       return state;
+    }
+
+    case UserAction.CREATE_BLOG_SUCCESS: {
+      return state;
+    }
+
+    case UserAction.UPDATE_BLOG_SUCCESS: {
+      return state;
+    }
+
+    case UserAction.GET_EDITTING_BLOG_SUCCESS: {
+      return {
+        ...state,
+        edittingBlog: action.payload.data,
+      };
     }
 
     default:
