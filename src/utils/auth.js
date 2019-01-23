@@ -19,6 +19,10 @@ class Auth {
     return this.data.accessToken;
   }
 
+  getUserId() {
+    return this.data.userId;
+  }
+
   setAuth(data) {
     this.data = data;
     setItem(TOKEN_KEY, data.accessToken);

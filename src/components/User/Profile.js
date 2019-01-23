@@ -7,44 +7,43 @@ import Typography from '@material-ui/core/Typography';
 import BorderColor from '@material-ui/icons/BorderColor';
 import DeleteForever from '@material-ui/icons/DeleteForever';
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import Moment from 'react-moment';
 import '../../assets/styles/user.css';
 import API from '../../services/apis';
 import history from '../../utils/history';
 import Header from '../Common/Header';
+import Auth from '../../utils/auth';
+import { getUserInfo } from '../../actions/user';
 
-export default class Profile extends Component {
+class Profile extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      user_id: localStorage.getItem('justblog_user_id') || null,
+      userId: Auth.getUserId(),
       blogs: [],
-      user_info: {},
     };
   }
 
   componentDidMount() {
-    const uid = localStorage.getItem('justblog_user_id') || null;
-    if (uid) {
-      this.setState({ user_id: uid }, () => {
-        this.fetchUserInfo();
-        this.fetchUserBlogs();
-      });
+    if (this.state.userId) {
+      this.fetchUserInfo();
+      this.fetchUserBlogs();
     }
   }
 
   fetchUserInfo = () => {
-    const { user_id } = this.state;
-    API.getUserInfo(user_id)
+    const { userId } = this.state;
+    this.props.getUserInfo(userId)
       .then((res) => {
-        this.setState({ user_info: res.data });
+        console.log(res.success);
       })
       .catch(err => console.log(err));
   }
 
   fetchUserBlogs = () => {
-    const { user_id } = this.state;
-    API.getBlogsByUser(user_id)
+    const { userId } = this.state;
+    API.getBlogsByUser(userId)
       .then((res) => {
         this.setState({ blogs: res.data });
       })
@@ -107,8 +106,8 @@ export default class Profile extends Component {
   }
 
   render() {
-    const { user_info } = this.state;
-    const { name, email, picture } = user_info;
+    const { userInfo } = this.props;
+    const { name, email, picture } = userInfo;
     return (
       <div className="user-container">
         <Header />
@@ -146,3 +145,13 @@ export default class Profile extends Component {
     );
   }
 }
+
+const mapStateToProps = ({ user }) => ({
+  userInfo: user.userInfo,
+});
+
+const mapDispatchToProps = {
+  getUserInfo,
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Profile);

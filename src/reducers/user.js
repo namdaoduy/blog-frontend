@@ -3,6 +3,7 @@ import Auth from '../utils/auth';
 
 const INITIAL_STATE = {
   loggedIn: Auth.isAuth(),
+  userInfo: {},
 };
 
 export default (state = INITIAL_STATE, action) => {
@@ -15,21 +16,24 @@ export default (state = INITIAL_STATE, action) => {
   switch (action.type) {
     case UserAction.LOGIN_GOOGLE_SUCCESS: {
       Auth.setAuth(action.payload.data);
-
-      const newState = {
+      return {
         ...state,
         loggedIn: true,
       };
-
-      return newState;
     }
 
     case UserAction.LOGOUT: {
       Auth.logout();
-
       return {
         ...state,
         loggedIn: false,
+      };
+    }
+
+    case UserAction.GET_USER_INFO_SUCCESS: {
+      return {
+        ...state,
+        userInfo: action.payload.data,
       };
     }
 

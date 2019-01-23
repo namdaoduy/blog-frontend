@@ -14,3 +14,10 @@ export function logout() {
     payload: true,
   };
 }
+
+export function getUserInfo(userId) {
+  return {
+    type: UserAction.GET_USER_INFO,
+    promise: get(`/users/${userId}`),
+  };
+}
