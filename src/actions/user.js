@@ -1,5 +1,5 @@
 import { UserAction } from '../constants/action';
-import { get, post, put, del } from '../utils/request';
+import { get, post, del } from '../utils/request';
 
 export function loginGoogle(data) {
   return {

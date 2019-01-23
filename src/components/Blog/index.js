@@ -10,20 +10,20 @@ import Favorite from '@material-ui/icons/Favorite';
 import FavoriteBorder from '@material-ui/icons/FavoriteBorder';
 import Share from '@material-ui/icons/Share';
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import Markdown from 'react-markdown';
 import Moment from 'react-moment';
 import '../../assets/styles/blog.css';
 import API from '../../services/apis';
 import Header from '../Common/Header';
+import { getBlogById } from '../../actions/blog';
 
-export default class Blog extends Component {
+class Blog extends Component {
   constructor(props) {
     super(props);
     const { match } = this.props;
     this.state = {
       id: match.params.blog_id,
-      blog: {},
-      isLiked: false,
     };
   }
 
@@ -33,12 +33,8 @@ export default class Blog extends Component {
 
   fetchBlog = () => {
     const { id } = this.state;
-    API.getBlogById(id)
-      .then((res) => {
-        if (!res.success) return;
-        console.log(res);
-        this.setState({ blog: res.data });
-      })
+    this.props.getBlogById(id)
+      .then(res => console.log(res.success))
       .catch(err => console.log(err));
   };
 
@@ -55,7 +51,10 @@ export default class Blog extends Component {
   }
 
   onLike = () => {
-    const { isLiked } = this.state;
+    const { loggedIn, isLiked } = this.props;
+    if (!loggedIn) {
+      alert('You have to log in to like blogs.');
+    }
     if (isLiked) {
       return;
     }
@@ -63,30 +62,30 @@ export default class Blog extends Component {
   }
 
   render() {
-    const { blog, isLiked } = this.state;
+    const { blogData, isLiked } = this.props;
     return (
       <div className="blog-container">
         <Header />
         <Grid className="blog-inner" container spacing={24}>
           <Grid item xs={12}>
             <Typography variant="h3" className="serif-2">
-              {blog.title || 'Blog title'}
+              {blogData.title || 'Blog title'}
             </Typography>
 
             <div className="blog-info">
               <Avatar
                 className="author-avatar"
                 alt="Author Avatar"
-                src={blog.picture}
+                src={blogData.picture}
               />
               <div className="blog-info-text">
                 <Typography variant="subtitle2">
-                  {blog.author || "Author's Name"}
+                  {blogData.author || "Author's Name"}
                 </Typography>
                 <Typography variant="caption">
-                  <Moment fromNow date={blog.created_at || 1545813100264} />
+                  <Moment fromNow date={blogData.created_at || 1545813100264} />
                   <span className="dot-divider" />
-                  {`${blog.timeRead || 10} min read`}
+                  {`${blogData.timeRead || 10} min read`}
                 </Typography>
               </div>
             </div>
@@ -94,7 +93,7 @@ export default class Blog extends Component {
             <div className="blog-content">
               <div className="blog-content-left">
                 <Toolbar className="blog-btn-list">
-                  <Tooltip title={blog.like || 0} placement="left">
+                  <Tooltip title={blogData.like || 0} placement="left">
                     <IconButton
                       color="secondary"
                       onClick={this.onLike}
@@ -108,7 +107,7 @@ export default class Blog extends Component {
                 </Toolbar>
               </div>
               <div className="blog-content-right">
-                <Markdown source={blog.body} className="blog-markdown" />
+                <Markdown source={blogData.body} className="blog-markdown" />
               </div>
             </div>
           </Grid>
@@ -117,3 +116,15 @@ export default class Blog extends Component {
     );
   }
 }
+
+const mapStateToProps = ({ blog, user }) => ({
+  blogData: blog.blogData,
+  isLiked: blog.isLiked,
+  loggedIn: user.loggedIn,
+});
+
+const mapDispatchToProps = {
+  getBlogById,
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Blog);

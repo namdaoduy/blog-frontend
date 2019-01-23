@@ -18,6 +18,12 @@ export const UserAction = {
   DELETE_BLOG_FAILURE: 'DELETE_BLOG_FAILURE',
 };
 
+export const BlogAction = {
+  GET_BLOG_BY_ID: 'GET_BLOG_BY_ID',
+  GET_BLOG_BY_ID_SUCCESS: 'GET_BLOG_BY_ID_SUCCESS',
+  GET_BLOG_BY_ID_FAILURE: 'GET_BLOG_BY_ID_FAILURE',
+};
+
 export const AppAction = {
 
 };
