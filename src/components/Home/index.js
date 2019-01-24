@@ -5,12 +5,12 @@ import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { getAllBlogs, getTrendingBlogs } from '../../actions/app';
 import '../../assets/styles/home.css';
 import history from '../../utils/history';
 import Header from '../Common/Header';
 import NewBlog from './NewBlog';
 import TrendingBlog from './TrendingBlog';
-import { getAllBlogs, getTrendingBlogs } from '../../actions/app';
 
 class Home extends Component {
   componentDidMount() {

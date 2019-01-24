@@ -2,15 +2,15 @@ import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import 'draft-js/dist/Draft.css';
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
 import ReactMde from 'react-mde';
 import 'react-mde/lib/styles/css/react-mde-all.css';
+import { connect } from 'react-redux';
 import * as Showdown from 'showdown';
+import { createBlog, getEdittingBlog, updateBlog } from '../../actions/user';
 import '../../assets/styles/user.css';
+import * as constants from '../../constants/common';
 import history from '../../utils/history';
 import Header from '../Common/Header';
-import { createBlog, updateBlog, getEdittingBlog } from '../../actions/user';
-import * as constants from '../../constants/common';
 
 class BlogEditor extends Component {
   constructor(props) {
@@ -84,19 +84,6 @@ class BlogEditor extends Component {
     return true;
   }
 
-  renderError = () => {
-    const { error } = this.state;
-    if (error) {
-      return (
-        <div>
-          Title must be between 10-100 characters.
-          Body must be at least 1000 characters
-        </div>
-      );
-    }
-    return null;
-  }
-
   onSubmit = () => {
     if (!this.validateInput()) {
       return false;
@@ -138,6 +125,19 @@ class BlogEditor extends Component {
         generateMarkdownPreview={markdown => Promise.resolve(this.converter.makeHtml(markdown))}
       />
     );
+  }
+
+  renderError = () => {
+    const { error } = this.state;
+    if (error) {
+      return (
+        <div>
+          Title must be between 10-100 characters.
+          Body must be at least 1000 characters
+        </div>
+      );
+    }
+    return null;
   }
 
   render() {

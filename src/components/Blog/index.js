@@ -8,12 +8,12 @@ import Favorite from '@material-ui/icons/Favorite';
 import FavoriteBorder from '@material-ui/icons/FavoriteBorder';
 import Share from '@material-ui/icons/Share';
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
 import Markdown from 'react-markdown';
 import Moment from 'react-moment';
+import { connect } from 'react-redux';
+import { getBlogById, likeBlog } from '../../actions/blog';
 import '../../assets/styles/blog.css';
 import Header from '../Common/Header';
-import { getBlogById, likeBlog } from '../../actions/blog';
 
 class Blog extends Component {
   constructor(props) {

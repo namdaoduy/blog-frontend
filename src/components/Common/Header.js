@@ -1,11 +1,11 @@
 import AppBar from '@material-ui/core/AppBar';
+import Button from '@material-ui/core/Button';
+import ButtonBase from '@material-ui/core/ButtonBase';
 import IconButton from '@material-ui/core/IconButton';
 import Popover from '@material-ui/core/Popover';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import AccountCircle from '@material-ui/icons/AccountCircle';
-import Button from '@material-ui/core/Button';
-import ButtonBase from '@material-ui/core/ButtonBase';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { logout } from '../../actions/user';
@@ -103,6 +103,6 @@ const mapStateToProps = ({ user }) => ({
 
 const mapDispatchToProps = {
   logout,
-}
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(Header);

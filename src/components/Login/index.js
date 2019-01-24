@@ -1,12 +1,11 @@
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
-import { connect } from 'react-redux';
 import React, { Component } from 'react';
 import { GoogleLogin } from 'react-google-login';
+import { connect } from 'react-redux';
+import { loginGoogle } from '../../actions/user';
 import '../../assets/styles/login.css';
 import configs from '../../configs';
-import API from '../../services/apis';
-import { loginGoogle } from '../../actions/user';
 import history from '../../utils/history';
 
 class Login extends Component {

@@ -2,9 +2,9 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import { createGenerateClassName, jssPreset, MuiThemeProvider } from '@material-ui/core/styles';
 import { create } from 'jss';
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
 import JssProvider from 'react-jss/lib/JssProvider';
 import Loadable from 'react-loadable';
+import { connect } from 'react-redux';
 import { Redirect, Route, Router, Switch } from 'react-router-dom';
 import theme from '../constants/theme';
 import history from '../utils/history';
@@ -50,7 +50,6 @@ const BlogEditor = Loadable({
 });
 
 class App extends Component {
-
   componentDidMount() {
     this.preloadChunks();
   }
