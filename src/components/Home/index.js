@@ -37,7 +37,10 @@ class Home extends Component {
 
   handleChangePage = (page) => {
     this.props.getAllBlogs({ page })
-      .then(res => console.log(res.success))
+      .then((res) => {
+        console.log(res.success);
+        window.scrollTo(0, 320);
+      })
       .catch(err => console.log(err));
   }
 
