@@ -16,8 +16,14 @@ export default (state = INITIAL_STATE, action) => {
     }
 
     case BlogAction.LIKE_BLOG_SUCCESS: {
+      const newBlogData = {
+        ...state.blogData,
+        like: state.blogData.like + 1,
+      };
+
       return {
         ...state,
+        blogData: newBlogData,
         isLiked: true,
       };
     }

@@ -150,6 +150,7 @@ class BlogEditor extends Component {
             <TextField
               onChange={this.handleTitleChange}
               value={title}
+              className="editor-title-input"
               placeholder="10 - 100 characters"
               required
               id="outlined-required"

@@ -52,6 +52,7 @@
 .editor-container {
   width: 100%;
   position: relative;
+  padding-bottom: 100px;
 }
 
 .editor-container > button {
@@ -60,7 +61,15 @@
   top: 25px;
 }
 
+.editor-title-input {
+  width: 80%;
+}
+
 .md-editor {
   width: 100%;
   background-color: var(--paper-color);
+}
+
+.md-editor .mde-text {
+  min-height: 70vh;
 }
