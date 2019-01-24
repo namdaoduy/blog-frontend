@@ -11,6 +11,7 @@ import history from '../../utils/history';
 import Header from '../Common/Header';
 import NewBlog from './NewBlog';
 import TrendingBlog from './TrendingBlog';
+import Pagination from "material-ui-flat-pagination";
 
 class Home extends Component {
   componentDidMount() {
@@ -34,6 +35,24 @@ class Home extends Component {
     }
   }
 
+  handleChangePage = (page) => {
+    this.props.getAllBlogs({ page })
+      .then(res => console.log(res.success))
+      .catch(err => console.log(err));
+  }
+
+  fetchNewBlogs = () => {
+    this.props.getAllBlogs(null)
+      .then(res => console.log(res.success))
+      .catch(err => console.log(err));
+  }
+
+  fetchTrendingBlogs = () => {
+    this.props.getTrendingBlogs()
+      .then(res => console.log(res.success))
+      .catch(err => console.log(err));
+  }
+
   renderNewBlogs = () => {
     const { newBlogs } = this.props;
     return newBlogs.map(blog => (
@@ -48,20 +67,8 @@ class Home extends Component {
     ));
   }
 
-  fetchNewBlogs = () => {
-    this.props.getAllBlogs()
-      .then(res => console.log(res.success))
-      .catch(err => console.log(err));
-  }
-
-  fetchTrendingBlogs = () => {
-    this.props.getTrendingBlogs()
-      .then(res => console.log(res.success))
-      .catch(err => console.log(err));
-  }
-
   render() {
-    const { loggedIn } = this.props;
+    const { loggedIn, pagination } = this.props;
     return (
       <div className="home-container">
         <Header />
@@ -94,6 +101,15 @@ class Home extends Component {
             <Grid container spacing={24}>
               {this.renderNewBlogs()}
             </Grid>
+            <Pagination
+              className="home-pagination"
+              currentPageColor="secondary"
+              otherPageColor="inherit"
+              limit={pagination.limit}
+              offset={pagination.offset}
+              total={pagination.total}
+              onClick={(e, o, page) => this.handleChangePage(page)}
+            />
           </Grid>
 
           <Grid item xs={4}>
@@ -115,6 +131,7 @@ class Home extends Component {
 const mapStateToProps = ({ app, user }) => ({
   newBlogs: app.allBlogs,
   trendingBlogs: app.trendingBlogs,
+  pagination: app.pagination,
   loggedIn: user.loggedIn,
 });
 

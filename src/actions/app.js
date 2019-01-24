@@ -1,10 +1,10 @@
 import { AppAction } from '../constants/action';
 import { get, post, put, del } from '../utils/request';
 
-export function getAllBlogs() {
+export function getAllBlogs(data) {
   return {
     type: AppAction.GET_ALL_BLOGS,
-    promise: get('/blogs'),
+    promise: get('/blogs', data),
   };
 }
 

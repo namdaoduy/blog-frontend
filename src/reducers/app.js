@@ -3,6 +3,7 @@ import { AppAction } from '../constants/action';
 const INITIAL_STATE = {
   allBlogs: [],
   trendingBlogs: [],
+  pagination: {},
 };
 
 export default (state = INITIAL_STATE, action) => {
@@ -10,7 +11,8 @@ export default (state = INITIAL_STATE, action) => {
     case AppAction.GET_ALL_BLOGS_SUCCESS: {
       return {
         ...state,
-        allBlogs: action.payload.data,
+        allBlogs: action.payload.data.blogs,
+        pagination: action.payload.data.pagination,
       };
     }
 
