@@ -19,7 +19,11 @@ class Home extends Component {
   }
 
   handleWriteNow = () => {
-    history.push('/user/blog/new');
+    if (!this.props.loggedIn) {
+      history.push('/login');
+    } else {
+      history.push('/user/blog/new');
+    }
   }
 
   handleMakeAccount = () => {
@@ -56,16 +60,9 @@ class Home extends Component {
     return (
       <div className="home-container">
         <Header />
-        <Grid
-          className="home-inner"
-          container
-          spacing={24}
-        >
+        <Grid className="home-inner" container spacing={24}>
           <Grid item xs={12}>
-            <Paper
-              className="home-welcome"
-              elevation={5}
-            >
+            <Paper className="home-welcome" elevation={5}>
               <Typography className="serif" variant="h1" gutterBottom>
                 Welcome to Just Blog,
                 {' '}
@@ -75,20 +72,10 @@ class Home extends Component {
               <Typography variant="subtitle1" gutterBottom>
                 We’ll deliver the best stories and ideas on the topics you care about most straight to your homepage, app, or inbox.
               </Typography>
-              <Button
-                className="btn-1"
-                variant="contained"
-                color="secondary"
-                onClick={this.handleWriteNow}
-              >
+              <Button className="btn-1" variant="contained" color="secondary" onClick={this.handleWriteNow}>
                 Write Now
               </Button>
-              <Button
-                className="btn-2"
-                variant="outlined"
-                color="secondary"
-                onClick={this.handleMakeAccount}
-              >
+              <Button className="btn-2" variant="outlined" color="secondary" onClick={this.handleMakeAccount}>
                 Make account in seconds
               </Button>
             </Paper>
@@ -120,9 +107,10 @@ class Home extends Component {
   }
 }
 
-const mapStateToProps = ({ app }) => ({
+const mapStateToProps = ({ app, user }) => ({
   newBlogs: app.allBlogs,
   trendingBlogs: app.trendingBlogs,
+  loggedIn: user.loggedIn,
 });
 
 const mapDispatchToProps = {
