@@ -27,7 +27,11 @@ class Home extends Component {
   }
 
   handleMakeAccount = () => {
-    history.push('/login');
+    if (!this.props.loggedIn) {
+      history.push('/login');
+    } else {
+      history.push('/user');
+    }
   }
 
   renderNewBlogs = () => {
@@ -57,6 +61,7 @@ class Home extends Component {
   }
 
   render() {
+    const { loggedIn } = this.props;
     return (
       <div className="home-container">
         <Header />
@@ -76,7 +81,7 @@ class Home extends Component {
                 Write Now
               </Button>
               <Button className="btn-2" variant="outlined" color="secondary" onClick={this.handleMakeAccount}>
-                Make account in seconds
+                { !loggedIn ? 'Make account in seconds' : 'Go to my Profile'}
               </Button>
             </Paper>
           </Grid>
