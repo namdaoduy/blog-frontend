@@ -9,12 +9,14 @@ import { Redirect, Route, Router, Switch } from 'react-router-dom';
 import theme from '../constants/theme';
 import history from '../utils/history';
 
+// for jss injection
 const generateClassName = createGenerateClassName();
 const jss = create({
   ...jssPreset(),
   insertionPoint: 'jss-insertion-point',
 });
 
+// load component asynchronously
 const LoadingComponent = name => ({ isLoading, error }) => {
   if (isLoading) {
     console.log(`Loading component... ${name}`);

@@ -52,6 +52,7 @@ class BlogEditor extends Component {
     this.setState({ title: e.target.value });
   }
 
+  // If create new blog
   handleNew = (_data) => {
     const { title, body } = _data;
     const data = { title, body };
@@ -63,6 +64,7 @@ class BlogEditor extends Component {
       .catch(err => console.log(err));
   }
 
+  // If edit an existed blog
   handleEdit = (data) => {
     this.props.updateBlog(data)
       .then((res) => {
@@ -72,6 +74,7 @@ class BlogEditor extends Component {
       .catch(err => console.log(err));
   }
 
+  // Check if input is valid
   validateInput = () => {
     const { title, body } = this.state;
     if (title.length < constants.BLOG_TITLE_LENGTH_MIN
@@ -84,6 +87,7 @@ class BlogEditor extends Component {
     return true;
   }
 
+  // Submit form
   onSubmit = () => {
     if (!this.validateInput()) {
       return false;
@@ -127,13 +131,14 @@ class BlogEditor extends Component {
     );
   }
 
+  // render error if input is not valid
   renderError = () => {
     const { error } = this.state;
     if (error) {
       return (
-        <div>
-          Title must be between 10-100 characters.
-          Body must be at least 1000 characters
+        <div style={{ color: 'red' }}>
+          {`Title must be between ${constants.BLOG_TITLE_LENGTH_MIN}-${constants.BLOG_TITLE_LENGTH_MAX} characters.
+          Body must be between ${constants.BLOG_BODY_LENGTH_MIN}-${constants.BLOG_BODY_LENGTH_MAX} characters`}
         </div>
       );
     }

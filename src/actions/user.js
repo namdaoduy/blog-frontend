@@ -1,6 +1,7 @@
 import { UserAction } from '../constants/action';
 import { get, post, put, del } from '../utils/request';
 
+// Login with Google, send auth data from Google login popup
 export function loginGoogle(data) {
   return {
     type: UserAction.LOGIN_GOOGLE,
@@ -8,6 +9,7 @@ export function loginGoogle(data) {
   };
 }
 
+// Logout
 export function logout() {
   return {
     type: UserAction.LOGOUT,
@@ -15,6 +17,7 @@ export function logout() {
   };
 }
 
+// Get user info for Profile page
 export function getUserInfo(userId) {
   return {
     type: UserAction.GET_USER_INFO,
@@ -22,6 +25,7 @@ export function getUserInfo(userId) {
   };
 }
 
+// Get all blogs writen by this user
 export function getUserBlogs(userId) {
   return {
     type: UserAction.GET_USER_BLOG,
@@ -29,6 +33,7 @@ export function getUserBlogs(userId) {
   };
 }
 
+// Delete a blog
 export function deleteBlog(blogId) {
   return {
     type: UserAction.DELETE_BLOG,
@@ -36,6 +41,7 @@ export function deleteBlog(blogId) {
   };
 }
 
+// Create a new blog
 export function createBlog(data) {
   return {
     type: UserAction.CREATE_BLOG,
@@ -43,6 +49,7 @@ export function createBlog(data) {
   };
 }
 
+// Edit a blog
 export function updateBlog(data) {
   return {
     type: UserAction.UPDATE_BLOG,
@@ -50,6 +57,7 @@ export function updateBlog(data) {
   };
 }
 
+// Get a blog's data to edit it
 export function getEdittingBlog(blogId) {
   return {
     type: UserAction.GET_EDITTING_BLOG,

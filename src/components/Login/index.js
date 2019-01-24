@@ -11,13 +11,15 @@ import history from '../../utils/history';
 class Login extends Component {
   responseGoogle = (res) => {
     if (res.error) {
+      // If Google popup can not handle request
       alert('Login Failed');
     }
 
     this.props.loginGoogle(res)
       .then((res) => {
         this.handleLogin(res);
-      });
+      })
+      .catch(err => console.log(err));
 
     return null;
   }

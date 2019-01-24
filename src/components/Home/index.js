@@ -3,6 +3,7 @@ import Divider from '@material-ui/core/Divider';
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
+import Pagination from 'material-ui-flat-pagination';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { getAllBlogs, getTrendingBlogs } from '../../actions/app';
@@ -11,7 +12,6 @@ import history from '../../utils/history';
 import Header from '../Common/Header';
 import NewBlog from './NewBlog';
 import TrendingBlog from './TrendingBlog';
-import Pagination from "material-ui-flat-pagination";
 
 class Home extends Component {
   componentDidMount() {
@@ -45,6 +45,7 @@ class Home extends Component {
   }
 
   fetchNewBlogs = () => {
+    // Page = 1 is default then pass null instead
     this.props.getAllBlogs(null)
       .then(res => console.log(res.success))
       .catch(err => console.log(err));

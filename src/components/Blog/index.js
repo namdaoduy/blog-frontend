@@ -28,6 +28,7 @@ class Blog extends Component {
     this.fetchBlog();
   }
 
+  // fetch blog data
   fetchBlog = () => {
     const { id } = this.state;
     this.props.getBlogById(id)
@@ -35,6 +36,7 @@ class Blog extends Component {
       .catch(err => console.log(err));
   };
 
+  // Like this blog
   fetchLike = () => {
     const { id } = this.state;
     this.props.likeBlog(id)
@@ -44,9 +46,11 @@ class Blog extends Component {
 
   onLike = () => {
     const { loggedIn, isLiked } = this.props;
+    // Only logged in user can like
     if (!loggedIn) {
       alert('You have to log in to like blogs.');
     }
+    // If liked, nothing done
     if (isLiked) {
       return;
     }
