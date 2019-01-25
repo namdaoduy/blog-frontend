@@ -9,16 +9,16 @@ This Web App uses:
 - [X] Google OAuth2.0
 - [X] React Markdown
 - [X] eslint (air-bnb config)
-- [ ] Redux
+- [X] Redux
 
 What I've done:
 - [X] View blog (markdown render)
 - [X] Sign Up and Login with Google
 - [X] CRUD Blogs
+- [X] Implement Redux
+- [X] Well-documented
 
 Ongoing issues:
-- [ ] Implement Redux
-- [ ] Well-documented
 - [ ] Testing
 
 ### Installation and Setup
@@ -38,3 +38,9 @@ Install packages:
 To start hot debug React app:
 
     $ npm start
+
+### Production
+
+To use production config:
+
+    $ REACT_APP_ENV=prod && npm start
