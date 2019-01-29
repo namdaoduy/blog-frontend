@@ -68,8 +68,9 @@
     "setupFilesAfterEnv": [
       "<rootDir>__tests__/setup.js"
     ],
-    "testPathIgnorePatterns": [
-      "<rootDir>/__tests__/setup.js"
+    "testMatch": [
+      "<rootDir>/src/**/?(*.)(spec|test).{js,jsx,mjs}",
+      "<rootDir>/__tests__/**/?(*.)(spec|test).{js,jsx,mjs}"
     ]
   }
 }
