@@ -13,7 +13,7 @@ import Header from '../Common/Header';
 import NewBlog from './NewBlog';
 import TrendingBlog from './TrendingBlog';
 
-class Home extends Component {
+export class Home extends Component {
   componentDidMount() {
     this.fetchNewBlogs();
     this.fetchTrendingBlogs();
