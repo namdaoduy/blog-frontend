@@ -44,6 +44,7 @@
     "not op_mini all"
   ],
   "devDependencies": {
+    "@babel/plugin-proposal-class-properties": "^7.3.0",
     "@babel/plugin-syntax-dynamic-import": "^7.2.0",
     "@babel/preset-env": "^7.3.1",
     "@babel/preset-react": "^7.0.0",
@@ -71,6 +72,19 @@
     "testMatch": [
       "<rootDir>/src/**/?(*.)(spec|test).{js,jsx,mjs}",
       "<rootDir>/__tests__/**/?(*.)(spec|test).{js,jsx,mjs}"
+    ],
+    "collectCoverage": true,
+    "collectCoverageFrom": [
+      "src/**/*.{js,jsx,mjs}",
+      "!src/assets/**",
+      "!src/configs/**",
+      "!src/serviceWorker.js"
+    ],
+    "transform": {
+      "^.+\\.(js|jsx|mjs)$": "<rootDir>/node_modules/babel-jest"
+    },
+    "transformIgnorePatterns": [
+      "[/\\\\]node_modules[/\\\\].+\\.(js|jsx|mjs)$"
     ]
   }
 }
