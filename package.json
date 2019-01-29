@@ -78,7 +78,9 @@
       "src/**/*.{js,jsx,mjs}",
       "!src/assets/**",
       "!src/configs/**",
-      "!src/serviceWorker.js"
+      "!src/serviceWorker.js",
+      "!src/index.js",
+      "!src/utils/**"
     ],
     "transform": {
       "^.+\\.(js|jsx|mjs)$": "<rootDir>/node_modules/babel-jest"
