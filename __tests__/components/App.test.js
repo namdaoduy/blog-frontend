@@ -15,7 +15,14 @@ describe('component/App', () => {
   describe('render successfully', () => {
     it('render when not login', () => {
       setup();
-      expect(wrapper.length).toBe(1);
+      console.log(wrapper);
+      expect(wrapper).toMatchSnapshot();
+    });
+
+    it('render when login', () => {
+      props.loggedIn = true;
+      setup();
+      expect(wrapper).toMatchSnapshot();
     });
   });
 });

@@ -50,7 +50,6 @@
     "@babel/preset-react": "^7.0.0",
     "babel-core": "^6.26.3",
     "babel-eslint": "^9.0.0",
-    "babel-jest": "^24.0.0",
     "babel-preset-jest": "^24.0.0",
     "enzyme": "^3.8.0",
     "enzyme-adapter-react-16": "^1.8.0",
@@ -62,7 +61,6 @@
     "eslint-plugin-jsx-a11y": "^6.1.2",
     "eslint-plugin-prettier": "^3.0.1",
     "eslint-plugin-react": "^7.12.0",
-    "jest": "^24.0.0",
     "react-test-renderer": "^16.7.0"
   },
   "jest": {
@@ -87,6 +85,9 @@
     },
     "transformIgnorePatterns": [
       "[/\\\\]node_modules[/\\\\].+\\.(js|jsx|mjs)$"
+    ],
+    "snapshotSerializers": [
+      "enzyme-to-json/serializer"
     ]
   }
 }
