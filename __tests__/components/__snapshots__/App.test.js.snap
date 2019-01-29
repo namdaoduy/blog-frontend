@@ -1,5 +1,13 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`component/App render successfully render when login 1`] = `ShallowWrapper {}`;
+exports[`component/App render successfully render when login 1`] = `
+<ContextConsumer>
+  <Component />
+</ContextConsumer>
+`;
 
-exports[`component/App render successfully render when not login 1`] = `ShallowWrapper {}`;
+exports[`component/App render successfully render when not login 1`] = `
+<ContextConsumer>
+  <Component />
+</ContextConsumer>
+`;
