@@ -51,12 +51,12 @@ const BlogEditor = Loadable({
   loading: LoadingComponent('BlogEditor'),
 });
 
-class App extends Component {
+export class App extends Component {
   componentDidMount() {
     this.preloadChunks();
   }
 
-  renderRoutes() {
+  renderRoutes = () => {
     const routes = [
       <Route exact path="/" component={Home} key="home" />,
       <Route path="/login" component={Login} key="login" />,

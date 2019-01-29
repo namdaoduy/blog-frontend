@@ -1,27 +1,31 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import App from '../../src/components/App';
+import { App } from '../../src/components/App';
 
 describe('component/App', () => {
-  const props = {
-    loggedIn: false,
-  };
+  let props;
   let wrapper;
 
-  const setup = () => {
+  const setup = async () => {
     wrapper = shallow(<App {...props} />);
+    await Promise.resolve();
   };
 
+  beforeEach(() => {
+    props = {
+      loggedIn: false,
+    };
+  });
+
   describe('render successfully', () => {
-    it('render when not login', () => {
-      setup();
-      console.log(wrapper);
+    it('render when not login', async () => {
+      await setup();
       expect(wrapper).toMatchSnapshot();
     });
 
-    it('render when login', () => {
+    it('renders when login', async () => {
       props.loggedIn = true;
-      setup();
+      await setup();
       expect(wrapper).toMatchSnapshot();
     });
   });
