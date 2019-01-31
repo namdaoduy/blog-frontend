@@ -3,8 +3,6 @@ import { shallow } from 'enzyme';
 import history from 'utils/history';
 import { Home } from 'components/Home';
 
-jest.mock('utils/history.js');
-
 describe('components/Home/index', () => {
   const mockBlog = {
     id: 1,
@@ -85,5 +83,9 @@ describe('components/Home/index', () => {
     const instance = wrapper.instance();
     instance.handleChangePage(10);
     expect(instance.props.getAllBlogs).toHaveBeenCalledWith({ page: 10 });
+  });
+
+  afterAll(() => {
+    jest.clearAllMocks();
   });
 });

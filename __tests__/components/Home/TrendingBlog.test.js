@@ -3,8 +3,6 @@ import { shallow } from 'enzyme';
 import history from 'utils/history';
 import TrendingBlog from 'components/Home/TrendingBlog';
 
-jest.mock('utils/history.js');
-
 describe('components/Home/TrendingBlog.js', () => {
   let props;
   let wrapper;

@@ -1,0 +1,112 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`components/Blog/index Render correctly 1`] = `
+<div
+  className="blog-container"
+>
+  <Connect(Header) />
+  <WithStyles(Grid)
+    className="blog-inner"
+    container={true}
+    spacing={24}
+  >
+    <WithStyles(Grid)
+      item={true}
+      xs={12}
+    >
+      <WithStyles(Typography)
+        className="serif-2"
+        variant="h3"
+      >
+        Blog title
+      </WithStyles(Typography)>
+      <div
+        className="blog-info"
+      >
+        <WithStyles(Avatar)
+          alt="Author Avatar"
+          className="author-avatar"
+        />
+        <div
+          className="blog-info-text"
+        >
+          <WithStyles(Typography)
+            variant="subtitle2"
+          >
+            Author's Name
+          </WithStyles(Typography)>
+          <WithStyles(Typography)
+            variant="caption"
+          >
+            <t
+              ago={false}
+              calendar={false}
+              date={1545813100264}
+              decimal={false}
+              element="time"
+              filter={[Function]}
+              fromNow={true}
+              interval={60000}
+              onChange={[Function]}
+              titleFormat=""
+              toNow={false}
+              unit={null}
+              unix={false}
+              utc={false}
+              withTitle={false}
+            />
+            <span
+              className="dot-divider"
+            />
+            10 min read
+          </WithStyles(Typography)>
+        </div>
+      </div>
+      <div
+        className="blog-content"
+      >
+        <div
+          className="blog-content-left"
+        >
+          <WithStyles(Toolbar)
+            className="blog-btn-list"
+          >
+            <WithStyles(Tooltip)
+              placement="left"
+              title={0}
+            >
+              <WithStyles(IconButton)
+                className="btn-like"
+                color="secondary"
+                onClick={[Function]}
+              >
+                <pure(FavoriteBorderIcon) />
+              </WithStyles(IconButton)>
+            </WithStyles(Tooltip)>
+            <WithStyles(IconButton)
+              color="secondary"
+            >
+              <pure(ShareIcon) />
+            </WithStyles(IconButton)>
+          </WithStyles(Toolbar)>
+        </div>
+        <div
+          className="blog-content-right"
+        >
+          <ReactMarkdown
+            astPlugins={Array []}
+            className="blog-markdown"
+            escapeHtml={true}
+            plugins={Array []}
+            rawSourcePos={false}
+            renderers={Object {}}
+            skipHtml={false}
+            sourcePos={false}
+            transformLinkUri={[Function]}
+          />
+        </div>
+      </div>
+    </WithStyles(Grid)>
+  </WithStyles(Grid)>
+</div>
+`;

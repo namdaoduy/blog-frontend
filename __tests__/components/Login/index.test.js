@@ -3,9 +3,6 @@ import { shallow } from 'enzyme';
 import history from 'utils/history';
 import { Login } from 'components/Login';
 
-jest.mock('utils/history.js');
-window.alert = jest.fn();
-
 describe('components/Login/index', () => {
   let wrapper;
   let props;

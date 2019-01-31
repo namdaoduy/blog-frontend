@@ -1,9 +1,6 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import history from 'utils/history';
 import { App } from '../../src/components/App';
-
-jest.mock('utils/history.js');
 
 describe('component/App', () => {
   let props;

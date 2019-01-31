@@ -15,7 +15,7 @@ import { getBlogById, likeBlog } from '../../actions/blog';
 import '../../assets/styles/blog.css';
 import Header from '../Common/Header';
 
-class Blog extends Component {
+export class Blog extends Component {
   constructor(props) {
     super(props);
     const { match } = this.props;
@@ -49,6 +49,7 @@ class Blog extends Component {
     // Only logged in user can like
     if (!loggedIn) {
       alert('You have to log in to like blogs.');
+      return;
     }
     // If liked, nothing done
     if (isLiked) {
@@ -91,6 +92,7 @@ class Blog extends Component {
                 <Toolbar className="blog-btn-list">
                   <Tooltip title={blogData.like || 0} placement="left">
                     <IconButton
+                      className="btn-like"
                       color="secondary"
                       onClick={this.onLike}
                     >
