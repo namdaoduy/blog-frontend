@@ -6,9 +6,17 @@ import { Home } from 'components/Home';
 jest.mock('utils/history.js');
 
 describe('components/Home/index', () => {
+  const mockBlog = {
+    id: 1,
+    title: 'Mock title',
+    body: 'Mock body',
+    author: 'Mock Author',
+    created_at: 123456789,
+  };
+
   let props = {
-    newBlogs: [],
-    trendingBlogs: [],
+    newBlogs: [mockBlog],
+    trendingBlogs: [mockBlog],
     pagination: {},
     loggedIn: false,
     getAllBlogs: jest.fn(async () => {}),
