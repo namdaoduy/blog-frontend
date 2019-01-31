@@ -11,8 +11,8 @@ describe('components/Home/index', () => {
     trendingBlogs: [],
     pagination: {},
     loggedIn: false,
-    getAllBlogs: async () => {},
-    getTrendingBlogs: async () => {},
+    getAllBlogs: jest.fn(async () => {}),
+    getTrendingBlogs: jest.fn(async () => {}),
   };
   let wrapper;
 
@@ -70,5 +70,12 @@ describe('components/Home/index', () => {
         expect(history.push).toHaveBeenCalledWith('/user');
       });
     });
+  });
+
+  describe('Test method change page', () => {
+    setup();
+    const instance = wrapper.instance();
+    instance.handleChangePage(10);
+    expect(instance.props.getAllBlogs).toHaveBeenCalledWith({ page: 10 });
   });
 });
