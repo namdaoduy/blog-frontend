@@ -93,6 +93,9 @@
     ],
     "snapshotSerializers": [
       "enzyme-to-json/serializer"
+    ],
+    "modulePaths": [
+      "src"
     ]
   }
 }
