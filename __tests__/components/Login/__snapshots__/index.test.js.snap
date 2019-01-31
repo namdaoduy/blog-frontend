@@ -1,0 +1,57 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`components/Login/index Render correctly 1`] = `
+<div
+  className="login-container"
+>
+  <WithStyles(Typography)
+    className="serif"
+    gutterBottom={true}
+    variant="h2"
+  >
+    Just Blog
+  </WithStyles(Typography)>
+  <WithStyles(Paper)
+    className="login-paper"
+    elevation={8}
+  >
+    <WithStyles(Typography)
+      className="serif-2"
+      gutterBottom={true}
+      variant="h4"
+    >
+      Join us.
+    </WithStyles(Typography)>
+    <WithStyles(Typography)
+      gutterBottom={true}
+      variant="subtitle1"
+    >
+      Create an account to personalize your homepage, follow your favorite authors and publications, applaud stories you love, and more.
+    </WithStyles(Typography)>
+    <e
+      accessType="online"
+      buttonText="Login with Google"
+      clientId="106660850039-0qrna09hm090hl6n6k9g01ao77fijt2l.apps.googleusercontent.com"
+      cookiePolicy="single_host_origin"
+      disabledStyle={
+        Object {
+          "opacity": 0.6,
+        }
+      }
+      fetchBasicProfile={true}
+      icon={true}
+      isSignedIn={false}
+      jsSrc="https://apis.google.com/js/client:platform.js"
+      onFailure={[Function]}
+      onRequest={[Function]}
+      onSuccess={[Function]}
+      prompt=""
+      scope="profile email"
+      tag="button"
+      theme="light"
+      type="button"
+      uxMode="popup"
+    />
+  </WithStyles(Paper)>
+</div>
+`;

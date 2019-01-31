@@ -8,7 +8,7 @@ import '../../assets/styles/login.css';
 import configs from '../../configs';
 import history from '../../utils/history';
 
-class Login extends Component {
+export class Login extends Component {
   responseGoogle = (res) => {
     if (res.error) {
       // If Google popup can not handle request
