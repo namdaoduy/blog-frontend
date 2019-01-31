@@ -1,0 +1,127 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`components/Home/NewBlog.js Render correctly When blog is invalid 1`] = `
+<WithStyles(Grid)
+  item={true}
+  xs={12}
+>
+  <WithStyles(ButtonBase)
+    className="btn-base"
+    onClick={[Function]}
+  >
+    <WithStyles(Paper)
+      className="home-new-blog"
+    >
+      <WithStyles(Typography)
+        className="serif-2"
+        variant="h5"
+      >
+        Blog Title
+      </WithStyles(Typography)>
+      <WithStyles(Typography)
+        noWrap={true}
+        variant="body1"
+      >
+        Blog body
+      </WithStyles(Typography)>
+      <Space
+        height={20}
+      />
+      <WithStyles(Typography)
+        variant="subtitle2"
+      >
+        Blog Author
+      </WithStyles(Typography)>
+      <WithStyles(Typography)
+        variant="caption"
+      >
+        <t
+          ago={false}
+          calendar={false}
+          decimal={false}
+          element="time"
+          filter={[Function]}
+          fromNow={true}
+          interval={60000}
+          onChange={[Function]}
+          titleFormat=""
+          toNow={false}
+          unit={null}
+          unix={false}
+          utc={false}
+          withTitle={false}
+        >
+          1545813100264
+        </t>
+        <span
+          className="dot-divider"
+        />
+        10 min read
+      </WithStyles(Typography)>
+    </WithStyles(Paper)>
+  </WithStyles(ButtonBase)>
+</WithStyles(Grid)>
+`;
+
+exports[`components/Home/NewBlog.js Render correctly When blog is valid 1`] = `
+<WithStyles(Grid)
+  item={true}
+  xs={12}
+>
+  <WithStyles(ButtonBase)
+    className="btn-base"
+    onClick={[Function]}
+  >
+    <WithStyles(Paper)
+      className="home-new-blog"
+    >
+      <WithStyles(Typography)
+        className="serif-2"
+        variant="h5"
+      >
+        Mock title
+      </WithStyles(Typography)>
+      <WithStyles(Typography)
+        noWrap={true}
+        variant="body1"
+      >
+        Mock body
+      </WithStyles(Typography)>
+      <Space
+        height={20}
+      />
+      <WithStyles(Typography)
+        variant="subtitle2"
+      >
+        Mock Author
+      </WithStyles(Typography)>
+      <WithStyles(Typography)
+        variant="caption"
+      >
+        <t
+          ago={false}
+          calendar={false}
+          decimal={false}
+          element="time"
+          filter={[Function]}
+          fromNow={true}
+          interval={60000}
+          onChange={[Function]}
+          titleFormat=""
+          toNow={false}
+          unit={null}
+          unix={false}
+          utc={false}
+          withTitle={false}
+        >
+          1545813100264
+        </t>
+        <span
+          className="dot-divider"
+        />
+        10 min read
+      </WithStyles(Typography)>
+    </WithStyles(Paper)>
+  </WithStyles(ButtonBase)>
+</WithStyles(Grid)>
+`;

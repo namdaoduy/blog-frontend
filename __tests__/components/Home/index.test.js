@@ -14,7 +14,7 @@ describe('components/Home/index', () => {
     created_at: 123456789,
   };
 
-  let props = {
+  const props = {
     newBlogs: [mockBlog],
     trendingBlogs: [mockBlog],
     pagination: {},
