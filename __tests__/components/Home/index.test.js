@@ -1,6 +1,6 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import { Home } from '../../../src/components/Home/index';
+import { Home } from '../../../src/components/Home';
 
 describe('components/Home/index', () => {
   const props = {
@@ -8,8 +8,8 @@ describe('components/Home/index', () => {
     trendingBlogs: [],
     pagination: {},
     loggedIn: false,
-    getAllBlogs: jest.fn(),
-    getTrendingBlogs: jest.fn(),
+    getAllBlogs: async () => {},
+    getTrendingBlogs: async () => {},
   };
   let wrapper;
 
@@ -19,9 +19,13 @@ describe('components/Home/index', () => {
 
   describe('Life cycles', () => {
     it('componentDidmount call fetch API function', () => {
-      jest.spyOn(Home.prototype, 'componentDidMount');
       setup();
-      expect(Home.prototype.componentDidMount.calls.length).toBe(1);
+      const instance = wrapper.instance();
+      const mockNew = jest.spyOn(instance, 'fetchNewBlogs');
+      const mockTrend = jest.spyOn(instance, 'fetchNewBlogs');
+      instance.componentDidMount();
+      expect(mockNew).toHaveBeenCalledTimes(1);
+      expect(mockTrend).toHaveBeenCalledTimes(1);
     });
   });
 });
