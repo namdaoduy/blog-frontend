@@ -15,7 +15,7 @@ import Auth from '../../utils/auth';
 import history from '../../utils/history';
 import Header from '../Common/Header';
 
-class Profile extends Component {
+export class Profile extends Component {
   constructor(props) {
     super(props);
     this.state = {

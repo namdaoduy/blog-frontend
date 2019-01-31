@@ -1,0 +1,118 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`components/User/Profile Render correctly 1`] = `
+<div
+  className="user-container"
+>
+  <Connect(Header) />
+  <WithStyles(Grid)
+    className="user-inner"
+    container={true}
+    spacing={24}
+  >
+    <WithStyles(Grid)
+      item={true}
+      xs={3}
+    >
+      <WithStyles(Avatar)
+        alt="User Avatar"
+        className="user-avatar"
+        src={null}
+      />
+      <WithStyles(Typography)
+        className="bold"
+        variant="h5"
+      >
+        User Name
+      </WithStyles(Typography)>
+      <WithStyles(Typography)
+        variant="subtitle1"
+      >
+        useremail@gmail.com
+      </WithStyles(Typography)>
+      <WithStyles(Button)
+        color="secondary"
+        onClick={[Function]}
+        variant="contained"
+      >
+        New Blog
+      </WithStyles(Button)>
+    </WithStyles(Grid)>
+    <WithStyles(Grid)
+      item={true}
+      xs={9}
+    >
+      <WithStyles(Typography)
+        className="semi-bold serif-2"
+        gutterBottom={true}
+        variant="h5"
+      >
+        Your Blogs
+      </WithStyles(Typography)>
+      <WithStyles(Divider) />
+      <WithStyles(Paper)
+        className="user-profile-blog"
+        key="1"
+      >
+        <WithStyles(Typography)
+          className="serif-2"
+          variant="h5"
+        >
+          Mock title
+        </WithStyles(Typography)>
+        <WithStyles(Typography)
+          noWrap={true}
+          variant="body1"
+        >
+          Mock body
+        </WithStyles(Typography)>
+        <WithStyles(Typography)
+          variant="subtitle2"
+        >
+          Mock Author
+        </WithStyles(Typography)>
+        <WithStyles(Typography)
+          variant="caption"
+        >
+          <t
+            ago={false}
+            calendar={false}
+            decimal={false}
+            element="time"
+            filter={[Function]}
+            fromNow={true}
+            interval={60000}
+            onChange={[Function]}
+            titleFormat=""
+            toNow={false}
+            unit={null}
+            unix={false}
+            utc={false}
+            withTitle={false}
+          >
+            123456789
+          </t>
+          <span
+            className="dot-divider"
+          />
+          10 min read
+        </WithStyles(Typography)>
+        <WithStyles(Button)
+          color="secondary"
+          onClick={[Function]}
+          variant="fab"
+        >
+          <pure(DeleteForeverIcon) />
+        </WithStyles(Button)>
+        <WithStyles(Button)
+          color="secondary"
+          onClick={[Function]}
+          variant="fab"
+        >
+          <pure(BorderColorIcon) />
+        </WithStyles(Button)>
+      </WithStyles(Paper)>
+    </WithStyles(Grid)>
+  </WithStyles(Grid)>
+</div>
+`;
