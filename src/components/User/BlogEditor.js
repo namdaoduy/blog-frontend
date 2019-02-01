@@ -12,7 +12,7 @@ import * as constants from '../../constants/common';
 import history from '../../utils/history';
 import Header from '../Common/Header';
 
-class BlogEditor extends Component {
+export class BlogEditor extends Component {
   constructor(props) {
     super(props);
     const blog_id = props.match.params.blog_id;

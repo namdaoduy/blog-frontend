@@ -1,0 +1,421 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`components/User/Profile Test render Render correctly 1`] = `
+<div
+  className="user-container"
+>
+  <Connect(Header) />
+  <div
+    className="user-inner"
+  >
+    <div
+      className="editor-container"
+    >
+      <TextField
+        className="editor-title-input"
+        id="outlined-required"
+        label="Title"
+        margin="normal"
+        onChange={[Function]}
+        placeholder="10 - 100 characters"
+        required={true}
+        select={false}
+        value=""
+        variant="outlined"
+      />
+      <WithStyles(Button)
+        color="secondary"
+        onClick={[Function]}
+        variant="contained"
+      >
+        Submit
+      </WithStyles(Button)>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`components/User/Profile Test render Render editor correctly 1`] = `
+<div
+  className="user-container"
+>
+  <Connect(Header) />
+  <div
+    className="user-inner"
+  >
+    <div
+      className="editor-container"
+    >
+      <TextField
+        className="editor-title-input"
+        id="outlined-required"
+        label="Title"
+        margin="normal"
+        onChange={[Function]}
+        placeholder="10 - 100 characters"
+        required={true}
+        select={false}
+        value=""
+        variant="outlined"
+      />
+      <WithStyles(Button)
+        color="secondary"
+        onClick={[Function]}
+        variant="contained"
+      >
+        Submit
+      </WithStyles(Button)>
+      <ReactMde
+        buttonContentOptions={
+          Object {
+            "iconProvider": [Function],
+          }
+        }
+        className="md-editor"
+        commands={
+          Array [
+            Object {
+              "commands": Array [
+                Object {
+                  "buttonContentBuilder": [Function],
+                  "buttonProps": Object {
+                    "aria-label": "Add header",
+                  },
+                  "children": Array [
+                    Object {
+                      "buttonContentBuilder": [Function],
+                      "execute": [Function],
+                    },
+                    Object {
+                      "buttonContentBuilder": [Function],
+                      "execute": [Function],
+                    },
+                    Object {
+                      "buttonContentBuilder": [Function],
+                      "execute": [Function],
+                    },
+                    Object {
+                      "buttonContentBuilder": [Function],
+                      "execute": [Function],
+                    },
+                  ],
+                },
+                Object {
+                  "buttonContentBuilder": [Function],
+                  "buttonProps": Object {
+                    "aria-label": "Add bold text",
+                  },
+                  "execute": [Function],
+                  "keyCommand": "bold",
+                },
+                Object {
+                  "buttonContentBuilder": [Function],
+                  "buttonProps": Object {
+                    "aria-label": "Add italic text",
+                  },
+                  "execute": [Function],
+                  "keyCommand": "italic",
+                },
+                Object {
+                  "buttonContentBuilder": [Function],
+                  "buttonProps": Object {
+                    "aria-label": "Add strikethrough text",
+                  },
+                  "execute": [Function],
+                },
+              ],
+            },
+            Object {
+              "commands": Array [
+                Object {
+                  "buttonContentBuilder": [Function],
+                  "buttonProps": Object {
+                    "aria-label": "Insert a link",
+                  },
+                  "execute": [Function],
+                },
+                Object {
+                  "buttonContentBuilder": [Function],
+                  "buttonProps": Object {
+                    "aria-label": "Insert a quote",
+                  },
+                  "execute": [Function],
+                },
+                Object {
+                  "buttonContentBuilder": [Function],
+                  "buttonProps": Object {
+                    "aria-label": "Insert code",
+                  },
+                  "execute": [Function],
+                  "keyCommand": "code",
+                },
+                Object {
+                  "buttonContentBuilder": [Function],
+                  "buttonProps": Object {
+                    "aria-label": "Insert a picture",
+                  },
+                  "execute": [Function],
+                },
+              ],
+            },
+            Object {
+              "commands": Array [
+                Object {
+                  "buttonContentBuilder": [Function],
+                  "buttonProps": Object {
+                    "aria-label": "Insert a bulleted list",
+                  },
+                  "execute": [Function],
+                },
+                Object {
+                  "buttonContentBuilder": [Function],
+                  "buttonProps": Object {
+                    "aria-label": "Insert numbered list",
+                  },
+                  "execute": [Function],
+                },
+                Object {
+                  "buttonContentBuilder": [Function],
+                  "buttonProps": Object {
+                    "aria-label": "Insert checklist",
+                  },
+                  "execute": [Function],
+                },
+              ],
+            },
+          ]
+        }
+        emptyPreviewHtml="<p>&nbsp;</p>"
+        generateMarkdownPreview={[Function]}
+        l18n={
+          Object {
+            "preview": "Preview",
+            "write": "Write",
+          }
+        }
+        maxEditorHeight={500}
+        minEditorHeight={200}
+        minPreviewHeight={200}
+        onChange={[Function]}
+        readOnly={false}
+        value="Your body here"
+      />
+    </div>
+  </div>
+</div>
+`;
+
+exports[`components/User/Profile Test render Render error correctly 1`] = `
+<div
+  className="user-container"
+>
+  <Connect(Header) />
+  <div
+    className="user-inner"
+  >
+    <div
+      className="editor-container"
+    >
+      <TextField
+        className="editor-title-input"
+        id="outlined-required"
+        label="Title"
+        margin="normal"
+        onChange={[Function]}
+        placeholder="10 - 100 characters"
+        required={true}
+        select={false}
+        value=""
+        variant="outlined"
+      />
+      <WithStyles(Button)
+        color="secondary"
+        onClick={[Function]}
+        variant="contained"
+      >
+        Submit
+      </WithStyles(Button)>
+      <div
+        style={
+          Object {
+            "color": "red",
+          }
+        }
+      >
+        Title must be between 10-100 characters.
+          Body must be between 1000-20000 characters
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`components/User/Profile Test render Render if create new blog 1`] = `
+<div
+  className="user-container"
+>
+  <Connect(Header) />
+  <div
+    className="user-inner"
+  >
+    <div
+      className="editor-container"
+    >
+      <TextField
+        className="editor-title-input"
+        id="outlined-required"
+        label="Title"
+        margin="normal"
+        onChange={[Function]}
+        placeholder="10 - 100 characters"
+        required={true}
+        select={false}
+        value=""
+        variant="outlined"
+      />
+      <WithStyles(Button)
+        color="secondary"
+        onClick={[Function]}
+        variant="contained"
+      >
+        Submit
+      </WithStyles(Button)>
+      <ReactMde
+        buttonContentOptions={
+          Object {
+            "iconProvider": [Function],
+          }
+        }
+        className="md-editor"
+        commands={
+          Array [
+            Object {
+              "commands": Array [
+                Object {
+                  "buttonContentBuilder": [Function],
+                  "buttonProps": Object {
+                    "aria-label": "Add header",
+                  },
+                  "children": Array [
+                    Object {
+                      "buttonContentBuilder": [Function],
+                      "execute": [Function],
+                    },
+                    Object {
+                      "buttonContentBuilder": [Function],
+                      "execute": [Function],
+                    },
+                    Object {
+                      "buttonContentBuilder": [Function],
+                      "execute": [Function],
+                    },
+                    Object {
+                      "buttonContentBuilder": [Function],
+                      "execute": [Function],
+                    },
+                  ],
+                },
+                Object {
+                  "buttonContentBuilder": [Function],
+                  "buttonProps": Object {
+                    "aria-label": "Add bold text",
+                  },
+                  "execute": [Function],
+                  "keyCommand": "bold",
+                },
+                Object {
+                  "buttonContentBuilder": [Function],
+                  "buttonProps": Object {
+                    "aria-label": "Add italic text",
+                  },
+                  "execute": [Function],
+                  "keyCommand": "italic",
+                },
+                Object {
+                  "buttonContentBuilder": [Function],
+                  "buttonProps": Object {
+                    "aria-label": "Add strikethrough text",
+                  },
+                  "execute": [Function],
+                },
+              ],
+            },
+            Object {
+              "commands": Array [
+                Object {
+                  "buttonContentBuilder": [Function],
+                  "buttonProps": Object {
+                    "aria-label": "Insert a link",
+                  },
+                  "execute": [Function],
+                },
+                Object {
+                  "buttonContentBuilder": [Function],
+                  "buttonProps": Object {
+                    "aria-label": "Insert a quote",
+                  },
+                  "execute": [Function],
+                },
+                Object {
+                  "buttonContentBuilder": [Function],
+                  "buttonProps": Object {
+                    "aria-label": "Insert code",
+                  },
+                  "execute": [Function],
+                  "keyCommand": "code",
+                },
+                Object {
+                  "buttonContentBuilder": [Function],
+                  "buttonProps": Object {
+                    "aria-label": "Insert a picture",
+                  },
+                  "execute": [Function],
+                },
+              ],
+            },
+            Object {
+              "commands": Array [
+                Object {
+                  "buttonContentBuilder": [Function],
+                  "buttonProps": Object {
+                    "aria-label": "Insert a bulleted list",
+                  },
+                  "execute": [Function],
+                },
+                Object {
+                  "buttonContentBuilder": [Function],
+                  "buttonProps": Object {
+                    "aria-label": "Insert numbered list",
+                  },
+                  "execute": [Function],
+                },
+                Object {
+                  "buttonContentBuilder": [Function],
+                  "buttonProps": Object {
+                    "aria-label": "Insert checklist",
+                  },
+                  "execute": [Function],
+                },
+              ],
+            },
+          ]
+        }
+        emptyPreviewHtml="<p>&nbsp;</p>"
+        generateMarkdownPreview={[Function]}
+        l18n={
+          Object {
+            "preview": "Preview",
+            "write": "Write",
+          }
+        }
+        maxEditorHeight={500}
+        minEditorHeight={200}
+        minPreviewHeight={200}
+        onChange={[Function]}
+        readOnly={false}
+        value="Your body here"
+      />
+    </div>
+  </div>
+</div>
+`;
