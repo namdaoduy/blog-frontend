@@ -53,7 +53,6 @@ export class Profile extends Component {
     if (!del) return;
     this.props.deleteBlog(blogId)
       .then((res) => {
-        console.log(res.success);
         this.fetchUserBlogs();
       })
       .catch(err => console.log(err));
@@ -68,7 +67,7 @@ export class Profile extends Component {
   }
 
   renderBlogs = () => {
-    const { userBlogs } = this.props || [];
+    const { userBlogs } = this.props;
     return userBlogs.slice(0).reverse().map(blog => (
       <Paper className="user-profile-blog" key={blog.id}>
         <Typography variant="h5" className="serif-2">
@@ -86,6 +85,7 @@ export class Profile extends Component {
           {blog.timeRead || `${10} min read`}
         </Typography>
         <Button
+          className="btn-delete-blog"
           color="secondary"
           variant="fab"
           onClick={() => this.handleDelete(blog.id)}
@@ -93,6 +93,7 @@ export class Profile extends Component {
           <DeleteForever />
         </Button>
         <Button
+          className="btn-edit-blog"
           color="secondary"
           variant="fab"
           onClick={() => this.handleClickEdit(blog.id)}
@@ -123,6 +124,7 @@ export class Profile extends Component {
               {email || 'useremail@gmail.com'}
             </Typography>
             <Button
+              className="btn-new-blog"
               variant="contained"
               color="secondary"
               onClick={this.handleClickNew}
